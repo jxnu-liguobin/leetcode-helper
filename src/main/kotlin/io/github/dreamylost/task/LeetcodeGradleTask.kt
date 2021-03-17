@@ -10,16 +10,26 @@ import io.github.dreamylost.invoker.Jackson
 import io.github.dreamylost.invoker.ServerConfig
 import io.github.graphql.model.CodeSnippetNodeTO
 import org.gradle.api.DefaultTask
+import org.gradle.api.tasks.Input
 import org.gradle.api.tasks.TaskAction
 import java.io.File
 import kotlin.streams.toList
 
 open class LeetcodeGradleTask : DefaultTask() {
 
+    @get: Input
     lateinit var questionTitle: String
+
+    @get: Input
     lateinit var serverConfig: ServerConfig
+
+    @get: Input
     lateinit var generatedLanguage: GeneratedLanguage
+
+    @get: Input
     var packageName: String = "io.github.dreamylost"
+
+    @get: Input
     var prefix: String = "Leetcode_"
 
     @TaskAction
