@@ -1,6 +1,8 @@
 # LeetCode工具
 
-自动创建LeetCode文件到指定目录，为`cs-summary-reflection`编写，其他项目想使用参考`编写task`
+自动创建LeetCode文件到指定目录，为`cs-summary-reflection`编写，其他项目想使用参考`编写task`。
+
+目前以非登录状态查询题目。
 
 ## 原理
 
