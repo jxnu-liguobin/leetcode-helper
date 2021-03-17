@@ -1,0 +1,23 @@
+{
+  "generateClient": true,
+  "generateApis": true,
+  "generateBuilder": true,
+  "generateImmutableModels": true,
+  "generateToString": true,
+  "generateEqualsAndHashCode": true,
+  "apiPackageName": "io.github.graphql.resolver",
+  "modelPackageName": "io.github.graphql.model",
+  "generateModelOpenClasses": true,
+  "modelNameSuffix": "TO",
+  "apiInterfaceStrategy": "DO_NOT_GENERATE",
+  "apiRootInterfaceStrategy": "SINGLE_INTERFACE",
+  "generateModelsForRootTypes": "true",
+  "apiNamePrefix": "LeetCode",
+  "addGeneratedAnnotation": false,
+  "generateApisWithThrowsException": false,
+  "generatedLanguage": "KOTLIN",
+  "customTypesMapping": {
+    "Long": "Long",
+    "Object": "org.json.JSONObject"
+  }
+}

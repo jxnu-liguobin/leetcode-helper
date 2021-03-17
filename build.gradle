@@ -1,0 +1,78 @@
+import io.github.kobylynskyi.graphql.codegen.gradle.GraphQLCodegenGradleTask
+
+plugins {
+    id 'java'
+    id 'org.jetbrains.kotlin.jvm' version '1.4.31'
+    id "io.github.kobylynskyi.graphql.codegen" version "4.1.5"
+    id "com.gradle.plugin-publish" version "0.13.0"
+    id "java-gradle-plugin"
+    id 'maven-publish'
+}
+
+group 'io.github.jxnu-liguobin'
+version '0.1.0-SNAPSHOT'
+
+repositories {
+    maven {
+        url 'https://repo.gradle.org/gradle/libs-releases-local'
+    }
+    mavenCentral()
+    mavenLocal()
+    jcenter()
+}
+
+sourceSets.main.kotlin.srcDirs += ["src/main/kotlin-graphql"]
+
+
+dependencies {
+    implementation gradleApi()
+    implementation "io.github.kobylynskyi:graphql-java-codegen:4.1.5"
+    implementation "org.freemarker:freemarker:2.3.31"
+    implementation "com.squareup.okhttp3:okhttp:4.9.1"
+    implementation "org.json:json:20201115"
+    implementation "com.fasterxml.jackson.core:jackson-core:2.12.2"
+    implementation "com.fasterxml.jackson.core:jackson-databind:2.12.2"
+    implementation "com.fasterxml.jackson.core:jackson-annotations:2.12.2"
+    implementation 'com.fasterxml.jackson.module:jackson-module-parameter-names:2.12.2'
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.12.2'
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.12.2'
+    implementation 'com.graphql-java:graphql-java-extended-scalars:15.0.0'
+    implementation "com.fasterxml.jackson.module:jackson-module-kotlin:2.12.2"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.4.31"
+    testImplementation group: 'org.jetbrains.kotlin', name: 'kotlin-test-junit', version: '1.4.31'
+}
+
+/**
+ * Generate apis and models in Kotlin
+ */
+compileKotlin.dependsOn "graphqlCodegenKotlinService"
+task graphqlCodegenKotlinService(type: GraphQLCodegenGradleTask) {
+    graphqlSchemas.includePattern = "leetcode\\.graphqls"
+    outputDir = new File("src/main/kotlin-graphql")
+    jsonConfigurationFile = "src/main/resources/kotlin-codegen-config.json"
+}
+
+tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
+    kotlinOptions {
+        jvmTarget = '1.8'
+        javaParameters = true
+    }
+}
+
+gradlePlugin {
+    plugins {
+        graphqlCodegen {
+            id = 'io.github.jxnu-liguobin.leetcode-helper'
+            displayName = 'Leetcode Helper Plugin'
+            description = project.description
+            implementationClass = 'io.github.dreamylost.LeetcodeGradlePlugin'
+        }
+    }
+}
+
+pluginBundle {
+    website = 'https://github.com/jxnu-liguobin/leetcode-helper'
+    vcsUrl = 'https://github.com/jxnu-liguobin/leetcode-helper'
+    description = 'Gradle plugin for Leetcode'
+    tags = ['graphql', 'graphql-java', 'Leetcode', 'kotlin']
+}
