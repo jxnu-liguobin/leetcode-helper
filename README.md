@@ -23,7 +23,7 @@
 
 ## 参数说明
 
-1. __questionTitle__ LeetCode题目的英文标题 __必填__
+1. __questionTitle__ LeetCode题目的英文标题，目前没看到能根据ID查询的接口 __必填__
 2. __generatedLanguage__ 生成的模板代码的语言，目前支持以下语言（忽略大小写）：
     - Java
     - Scala
@@ -48,7 +48,6 @@
           }
       }
       ```
-   - questionTitle 题目的英文title，目前没看到能根据ID查询的接口
 5. __prefix__ 生成的模板代码的类名，默认`Leetcode_`
 
 ## 结果示例
