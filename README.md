@@ -1,7 +1,6 @@
 # LeetCode工具
 
 [![Kotlin CI](https://github.com/jxnu-liguobin/leetcode-helper/actions/workflows/KotlinCI.yml/badge.svg)](https://github.com/jxnu-liguobin/leetcode-helper/actions/workflows/KotlinCI.yml)
-
 [![Gradle Plugins](https://img.shields.io/maven-metadata/v/https/plugins.gradle.org/m2/io/github/jxnu-liguobin/leetcode-helper/maven-metadata.xml.svg?label=gradle)](https://plugins.gradle.org/plugin/io.github.jxnu-liguobin.leetcode-helper)
 
 自动创建LeetCode文件到指定目录，为`cs-summary-reflection`编写，其他项目想使用参考`编写task`。
