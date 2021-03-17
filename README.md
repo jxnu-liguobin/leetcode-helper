@@ -21,13 +21,13 @@
 
 ## 参数说明
 
-1. questionTitle LeetCode题目的因为标题，目前好像只能根据标题搜索，__必填__
-2. generatedLanguage 生成的模板代码的语言，目前支持以下语言（忽略大小写，默认Kotlin）：
+1. __questionTitle__ LeetCode题目的英文标题，目前好像只能根据标题搜索，__必填__
+2. __generatedLanguage__ 生成的模板代码的语言，目前支持以下语言（忽略大小写，默认Kotlin）：
     - Java
     - Scala
     - Kotlin
-3. packageName 生成的代码想要存放的目录，默认`io.github.dreamylost`
-4. serverConfig 模板服务器的配置信息（JSON字符串），目前serverHost仅支持LeetCode，结构如下：
+3. __packageName__ 生成的代码想要存放的目录，默认`io.github.dreamylost`
+4. __serverConfig__ 模板服务器的配置信息（JSON字符串），目前serverHost仅支持LeetCode，结构如下：
 ```kotlin
 data class ServerConfig(
     val serverHost: String,
@@ -35,7 +35,7 @@ data class ServerConfig(
     val questionTitle: String
 ) 
 ```
-5. prefix 生成的模板代码的类名，默认`Leetcode_`
+5. __prefix__ 生成的模板代码的类名，默认`Leetcode_`
 
 ## 模板
 
