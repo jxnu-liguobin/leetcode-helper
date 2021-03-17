@@ -21,23 +21,26 @@
 
 ## 参数说明
 
-1. __questionTitle__ LeetCode题目的英文标题，目前好像只能根据标题搜索，__必填__
-2. __generatedLanguage__ 生成的模板代码的语言，目前支持以下语言（忽略大小写，默认Kotlin）：
+1. __questionTitle__ LeetCode题目的英文标题 __必填__
+2. __generatedLanguage__ 生成的模板代码的语言，目前支持以下语言（忽略大小写）：
     - Java
     - Scala
-    - Kotlin
+    - Kotlin（默认）
 3. __packageName__ 生成的代码想要存放的目录，默认`io.github.dreamylost`
-4. __serverConfig__ 模板服务器的配置信息（JSON字符串），目前serverHost仅支持LeetCode，结构如下：
+4. __serverConfig__ 模板服务器的配置信息（JSON字符串）结构如下：
+   - serverHost 目前仅支持LeetCode，默认`https://leetcode-cn.com/graphql`
+   - headers 目前仅支持LeetCode，所以headers有默认值，如果默认值实现，自己添加
+   - questionTitle 问题的英文title，目前没看到能根据ID查询的接口
 ```kotlin
 data class ServerConfig(
     val serverHost: String,
     val headers: Map<String, String>?,
     val questionTitle: String
 ) 
-```
+```   
 5. __prefix__ 生成的模板代码的类名，默认`Leetcode_`
 
-## 模板
+## 结果示例
 
 暂不处理代码的格式化和依赖导入
 
@@ -121,7 +124,7 @@ object Leetcode_1603 extends App {
 
 ## 编写task
 
-在自己项目中使用的话，将task再包装一下：
+想在自己项目中使用的话，将task再包装一下：
 ```groovy
 task leetcodeCodegenService(type: io.github.dreamylost.task.LeetcodeGradleTask) {
    questionTitle = hasProperty('questionTitle') ? properties['questionTitle'] : "two-sum"
