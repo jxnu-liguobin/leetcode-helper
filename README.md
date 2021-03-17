@@ -123,7 +123,7 @@ object Leetcode_1603 extends App {
 
 在自己项目中使用的话，将task再包装一下：
 ```groovy
-    task leetcodeCodegenService(type: io.github.dreamylost.task.LeetcodeGradleTask) {
+task leetcodeCodegenService(type: io.github.dreamylost.task.LeetcodeGradleTask) {
    questionTitle = hasProperty('questionTitle') ? properties['questionTitle'] : "two-sum"
    generatedLanguage = hasProperty('generatedLanguage') ? properties['generatedLanguage'] : "java"
    packageName = hasProperty('packageName') ? properties['packageName'] : "io.github.test"
