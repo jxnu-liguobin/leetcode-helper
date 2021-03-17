@@ -12,6 +12,25 @@
 
 ## 使用
 
+```groovy
+buildscript {
+    repositories {
+       // 本地
+        mavenLocal()
+       // 远程
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "com.diffplug.spotless:spotless-plugin-gradle:5.11.0"
+        classpath "io.github.jxnu-liguobin:leetcode-helper:0.1.0-SNAPSHOT"
+    }
+}
+
+apply plugin: 'io.github.jxnu-liguobin.leetcode-helper'
+```
+
 **在多模块项目中**
 ```shell
 # 必须指定一个模块，否则每个模块都生成一个
