@@ -2,37 +2,28 @@ scalar Long
 scalar Object
 
 type Query {
-  question(titleSlug: String!): QuestionNode!
+    question(titleSlug: String!): QuestionNode!
 }
 
 type QuestionNode {
-  questionId: String!
-  questionFrontendId: String!
-  boundTopicId: Long
-  title: String!
-  titleSlug: String!
-  content: String!
-  translatedTitle: String!
-  translatedContent: String!
-  isPaidOnly: Boolean!
-  difficulty: String!
-  likes: Long
-  dislikes: Long
-  isLiked: String
-  langToValidPlayground: Object
-  topicTags: [TopicTagNode]
-  companyTagStats: String
-  codeSnippets: [CodeSnippetNode]
+    questionFrontendId: String!
+    questionId: String!
+    title: String!
+    codeSnippets: [CodeSnippetNode!]
+    topicTags: [TopicTagNode!]
+    metaData: Object
+    exampleTestcases: String
+    envInfo: Object
 }
 
 type TopicTagNode {
-  name: String
-  slug: String
-  translatedName: String
+    name: String
+    slug: String
+    translatedName: String
 }
 
 type CodeSnippetNode {
-  lang: String!
-  langSlug: String!
-  code: String!
+    lang: String!
+    langSlug: String!
+    code: String!
 }

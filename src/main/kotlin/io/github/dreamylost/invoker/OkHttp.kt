@@ -69,6 +69,7 @@ object OkHttp {
             } else {
                 val dataJSON = jsonObject.getJSONObject("data")
                 val data = dataJSON.get(request.request.operationName)
+                println("result: $data")
                 return deserialized(data, entityClassName)
             }
         } else {

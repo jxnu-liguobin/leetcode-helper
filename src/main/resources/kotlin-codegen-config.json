@@ -19,5 +19,13 @@
   "customTypesMapping": {
     "Long": "Long",
     "Object": "org.json.JSONObject"
+  },
+  "customAnnotationsMapping": {
+    "QuestionNode.metaData": [
+      "com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = io.github.dreamylost.JsonObjectDeserializer::class)"
+    ],
+    "QuestionNode.envInfo": [
+      "com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = io.github.dreamylost.JsonObjectDeserializer::class)"
+    ]
   }
 }
