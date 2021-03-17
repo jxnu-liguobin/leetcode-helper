@@ -16,6 +16,7 @@ import kotlin.streams.toList
 class LeetcodeFileTest {
 
     var serverConfig: ServerConfig? = null
+    val questionTitle = "design-parking-system"
 
 
     @Before
@@ -33,8 +34,7 @@ class LeetcodeFileTest {
         headers["sec-fetch-dest"] = "empty"
         serverConfig = ServerConfig(
             Constants.HOST,
-            headers,
-            "design-parking-system"
+            headers
         )
     }
 
@@ -51,7 +51,7 @@ class LeetcodeFileTest {
 
     @Test
     fun generate_kotlin() {
-        val question = ClientInvoker.getQuestion(serverConfig!!)
+        val question = ClientInvoker.getQuestion(serverConfig!!, questionTitle)
         val langCodes: List<Pair<String?, CodeSnippetNodeTO?>>? =
             question.codeSnippets?.stream()?.map { Pair(it?.langSlug, it) }?.toList()
         val codeNode = langCodes?.find { it.first == generatedLanguage.language }
@@ -74,7 +74,7 @@ class LeetcodeFileTest {
 
     @Test
     fun generate_kotlin_package() {
-        val question = ClientInvoker.getQuestion(serverConfig!!)
+        val question = ClientInvoker.getQuestion(serverConfig!!, questionTitle)
         val langCodes: List<Pair<String?, CodeSnippetNodeTO?>>? =
             question.codeSnippets?.stream()?.map { Pair(it?.langSlug, it) }?.toList()
         val codeNode = langCodes?.find { it.first == generatedLanguage.language }
@@ -96,7 +96,7 @@ class LeetcodeFileTest {
     @Test
     fun generate_java_package() {
         generatedLanguage = GeneratedLanguage.Java
-        val question = ClientInvoker.getQuestion(serverConfig!!)
+        val question = ClientInvoker.getQuestion(serverConfig!!, questionTitle)
         val langCodes: List<Pair<String?, CodeSnippetNodeTO?>>? =
             question.codeSnippets?.stream()?.map { Pair(it?.langSlug, it) }?.toList()
         val codeNode = langCodes?.find { it.first == generatedLanguage.language }
@@ -118,7 +118,7 @@ class LeetcodeFileTest {
     @Test
     fun generate_scala_package() {
         generatedLanguage = GeneratedLanguage.Scala
-        val question = ClientInvoker.getQuestion(serverConfig!!)
+        val question = ClientInvoker.getQuestion(serverConfig!!, questionTitle)
         val langCodes: List<Pair<String?, CodeSnippetNodeTO?>>? =
             question.codeSnippets?.stream()?.map { Pair(it?.langSlug, it) }?.toList()
         val codeNode = langCodes?.find { it.first == generatedLanguage.language }

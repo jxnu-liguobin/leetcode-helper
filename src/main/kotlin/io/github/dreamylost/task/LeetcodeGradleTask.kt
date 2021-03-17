@@ -1,5 +1,6 @@
 package io.github.dreamylost.task
 
+import com.fasterxml.jackson.module.kotlin.readValue
 import io.github.dreamylost.Constants
 import io.github.dreamylost.ExtractGeneratedLanguage
 import io.github.dreamylost.GeneratedLanguage
@@ -26,13 +27,10 @@ open class LeetcodeGradleTask : DefaultTask() {
         if (super.getProject().hasProperty("questionTitle")) {
             questionTitle = super.getProject().properties["questionTitle"].toString()
         }
-        if (super.getProject().hasProperty("serverConfig")) {
-            serverConfig = Jackson.objectMapper.readValue(
-                super.getProject().properties["serverConfig"].toString(),
-                ServerConfig::class.java
-            )
+        serverConfig = if (super.getProject().hasProperty("serverConfig")) {
+            Jackson.objectMapper.readValue(super.getProject().properties["serverConfig"].toString())
         } else {
-            serverConfig = ServerConfig.default(questionTitle)
+            ServerConfig.default()
         }
         if (super.getProject().hasProperty("generatedLanguage")) {
             generatedLanguage =
@@ -46,7 +44,7 @@ open class LeetcodeGradleTask : DefaultTask() {
         }
         val outputDir =
             File(super.getProject().projectDir.toPath().toString() + "/src/main/" + generatedLanguage.language)
-        val question = ClientInvoker.getQuestion(serverConfig)
+        val question = ClientInvoker.getQuestion(serverConfig, questionTitle)
         val langCodes: List<Pair<String?, CodeSnippetNodeTO?>>? =
             question.codeSnippets?.stream()?.map { Pair(it?.langSlug, it) }?.toList()
         val codeNode = langCodes?.find { it.first == generatedLanguage.language }

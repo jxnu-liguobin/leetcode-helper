@@ -40,11 +40,10 @@ object OkHttp {
         val httpRequestBody = request.toHttpJsonBody()
         println("host: ${config.serverHost}")
         println("headers: ${config.headers}")
-        println("question: ${config.questionTitle}")
         println("graphql request body: $httpRequestBody")
         val rb = Request.Builder().url(config.serverHost).addHeader("Accept", ApplicationJson)
             .post(httpRequestBody.toRequestBody(json))
-        config.headers!!.forEach {
+        config.headers.forEach {
             run {
                 rb.addHeader(it.key, it.value)
             }

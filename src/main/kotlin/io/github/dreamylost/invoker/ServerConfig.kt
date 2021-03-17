@@ -4,12 +4,11 @@ import io.github.dreamylost.Constants
 
 data class ServerConfig(
     val serverHost: String,
-    val headers: Map<String, String>?,
-    val questionTitle: String
+    val headers: Map<String, String>
 ) {
     companion object {
-        fun default(questionTitle: String): ServerConfig {
-            return ServerConfig(Constants.HOST, Constants.headers(), questionTitle)
+        fun default(): ServerConfig {
+            return ServerConfig(Constants.HOST, Constants.headers())
         }
     }
 }

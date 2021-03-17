@@ -8,7 +8,7 @@ import io.github.graphql.model.QuestionQueryRequest
 
 object ClientInvoker {
 
-    fun getQuestion(serverConfig: ServerConfig): QuestionNodeTO {
+    fun getQuestion(serverConfig: ServerConfig, questionTitle: String): QuestionNodeTO {
         val questionNodeResponseProjection = QuestionNodeResponseProjection().`all$`()
         val queryResolver = LeetcodeClient.newBuilder()
             .setConfig(
@@ -18,6 +18,6 @@ object ClientInvoker {
             )
             .setProjection(questionNodeResponseProjection).build<QueryResolver, QuestionQueryRequest>()
 
-        return queryResolver.question(serverConfig.questionTitle)
+        return queryResolver.question(questionTitle)
     }
 }
