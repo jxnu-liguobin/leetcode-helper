@@ -130,7 +130,7 @@ task leetcodeCodegenService(type: io.github.dreamylost.task.LeetcodeGradleTask) 
    questionTitle = hasProperty('questionTitle') ? properties['questionTitle'] : "two-sum"
    generatedLanguage = hasProperty('generatedLanguage') ? properties['generatedLanguage'] : "java"
    packageName = hasProperty('packageName') ? properties['packageName'] : "io.github.test"
-   prefix = hasProperty('packageName') ? properties['packageName'] : "Leetcode_"
+   prefix = hasProperty('prefix') ? properties['prefix'] : "Leetcode_"
 }
 ```
 
