@@ -126,7 +126,7 @@ object Leetcode_1603 extends App {
 
 ## 编写task
 
-想在自己项目中使用的话，将task再包装一下：
+想在自己项目中使用的话，可以将task再包装一下，以减少参数传递：
 ```groovy
 task leetcodeCodegenService(type: io.github.dreamylost.task.LeetcodeGradleTask) {
    questionTitle = hasProperty('questionTitle') ? properties['questionTitle'] : "two-sum"
@@ -138,10 +138,10 @@ task leetcodeCodegenService(type: io.github.dreamylost.task.LeetcodeGradleTask) 
 
 **在单个项目中**
 ```shell
-gradle leetcodeCodegenService
+gradle leetcodeCodegenService -PquestionTitle=two-sum
 ```
 
 **在多模块项目中**
 ```shell
-gradle moduleName:leetcodeCodegenService
+gradle moduleName:leetcodeCodegenService -PquestionTitle=two-sum
 ```
