@@ -48,13 +48,7 @@
                 }
             }
       ```
-   - questionTitle 问题的英文title，目前没看到能根据ID查询的接口
-```kotlin
-data class ServerConfig(
-    val serverHost: String,
-    val headers: Map<String, String>?
-) 
-```   
+   - questionTitle 题目的英文title，目前没看到能根据ID查询的接口
 5. __prefix__ 生成的模板代码的类名，默认`Leetcode_`
 
 ## 结果示例
