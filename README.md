@@ -209,13 +209,14 @@ mod test {
 
 ## 插件拓展
 
+下面即示例项目`examples`的主要配置
 ```groovy
 task leetcodeCodegenService(type: io.github.dreamylost.task.LeetcodeGradleTask) {
    questionTitle = "two-sum"
    generatedLanguage = io.github.dreamylost.GeneratedLanguage.Java
    packageName = "io.github.test"
    prefix = "Leetcode_"
-   srcFolder = "examples/src/main/java"
+   srcFolder = "src/main/java"
    serverConfig = io.github.dreamylost.invoker.ServerConfig.defaultConfig()
 }
 // 添加leetcodeExtension配置

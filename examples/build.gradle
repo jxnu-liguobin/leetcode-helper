@@ -6,7 +6,7 @@ buildscript {
         }
     }
     dependencies {
-        classpath "io.github.jxnu-liguobin:leetcode-helper:0.1.1"
+        classpath "io.github.jxnu-liguobin:leetcode-helper:0.1.2"
     }
 }
 
@@ -35,7 +35,7 @@ task leetcodeCodegenService(type: io.github.dreamylost.task.LeetcodeGradleTask) 
     generatedLanguage = io.github.dreamylost.GeneratedLanguage.Java
     packageName = "io.github.test"
     prefix = "Leetcode_"
-    srcFolder = "examples/src/main/java"
+    srcFolder = "src/main/java"
     serverConfig = io.github.dreamylost.invoker.ServerConfig.defaultConfig()
 }
 
