@@ -12,8 +12,6 @@ buildscript {
 
 apply plugin: 'java'
 apply plugin: 'io.github.jxnu-liguobin.leetcode-helper'
-apply plugin: 'maven-publish'
-
 
 group 'io.github.jxnu-liguobin'
 version '0.1.2'
@@ -68,5 +66,3 @@ public class ${prefix!""}${className!""} {
     templateName = "customTemplate"
     templateSourceCode = template
 }
-
-project.tasks.publish.enabled = false

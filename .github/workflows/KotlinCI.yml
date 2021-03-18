@@ -20,6 +20,7 @@ jobs:
 
       - name: PublishToLocal Codegen Helper 
         run: ./gradlew publishToMavenLocal --warning-mode all
-          
-      - name: Build Kotlin
-        run: ./gradlew build --info
+
+      - name: Build Examples
+        working-directory: examples
+        run: ./gradlew build
