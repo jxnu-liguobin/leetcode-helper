@@ -1,14 +1,12 @@
 package io.github.dreamylost.task
 
 import com.fasterxml.jackson.module.kotlin.readValue
-import io.github.dreamylost.Constants
-import io.github.dreamylost.ExtractGeneratedLanguage
-import io.github.dreamylost.GeneratedLanguage
-import io.github.dreamylost.LeetcodeFileCreator
+import io.github.dreamylost.*
 import io.github.dreamylost.invoker.ClientInvoker
 import io.github.dreamylost.invoker.Jackson
 import io.github.dreamylost.invoker.LeetcodeException
 import io.github.dreamylost.invoker.ServerConfig
+import io.github.dreamylost.registry.FreeMarkerTemplatesRegistry
 import io.github.graphql.model.CodeSnippetNodeTO
 import org.gradle.api.DefaultTask
 import org.gradle.api.tasks.Input
@@ -46,17 +44,27 @@ abstract class LeetcodeGradleTask : DefaultTask() {
 
     @TaskAction
     open fun leetcodeHelper() {
+        val leetcodeExtension = project.extensions.getByType(LeetcodePluginExtension::class.java)
         // 优先使用属性中获取的变量
         setProperties()
         // 均没有，则使用默认
         setDefaultValues()
+        // 注册自定义模板
+        if (leetcodeExtension.templateSourceCode != null && leetcodeExtension.customData.isNotEmpty()) {
+            generatedLanguage?.let {
+                FreeMarkerTemplatesRegistry.customRegister(
+                    leetcodeExtension.templateName!!, leetcodeExtension.templateSourceCode!!, it
+                )
+            }
+        }
         println(
             "config:  \n questionTitle:${questionTitle}" +
                     "\n serverConfig:${serverConfig}" +
                     "\n generatedLanguage:${generatedLanguage}" +
                     "\n packageName:${packageName}" +
                     "\n prefix:${prefix}" +
-                    "\n srcFolder:$srcFolder"
+                    "\n srcFolder:$srcFolder" +
+                    "\n customTemplate:${leetcodeExtension.templateName}"
         )
         val question = ClientInvoker.getQuestion(serverConfig!!, questionTitle!!)
         val langCodes: List<Pair<String?, CodeSnippetNodeTO?>>? =
@@ -68,7 +76,11 @@ abstract class LeetcodeGradleTask : DefaultTask() {
             Pair(Constants.PACKAGE, packageName),
             Pair(Constants.CODE, codeNode?.second?.code),
         )
-        LeetcodeFileCreator.createFile(data, buildSrcFolder(srcFolder, generatedLanguage!!), generatedLanguage!!)
+        LeetcodeFileCreator.createFile(
+            data.plus(leetcodeExtension.customData),
+            buildSrcFolder(srcFolder, generatedLanguage!!),
+            generatedLanguage!!
+        )
     }
 
     private fun buildSrcFolder(srcFolder: String?, language: GeneratedLanguage): File {

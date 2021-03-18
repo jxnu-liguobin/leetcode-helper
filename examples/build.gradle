@@ -1,0 +1,72 @@
+buildscript {
+    repositories {
+        mavenLocal()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "io.github.jxnu-liguobin:leetcode-helper:0.1.1"
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'io.github.jxnu-liguobin.leetcode-helper'
+apply plugin: 'maven-publish'
+
+
+group 'io.github.jxnu-liguobin'
+version '0.1.2'
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+task leetcodeCodegenService(type: io.github.dreamylost.task.LeetcodeGradleTask) {
+    questionTitle = "two-sum"
+    generatedLanguage = io.github.dreamylost.GeneratedLanguage.Java
+    packageName = "io.github.test"
+    prefix = "Leetcode_"
+    srcFolder = "examples/src/main/java"
+    serverConfig = io.github.dreamylost.invoker.ServerConfig.defaultConfig()
+}
+
+leetcodeExtension {
+    String template =
+'''<#if package?has_content>
+package ${package};
+
+</#if>
+
+public class ${prefix!""}${className!""} {
+    <#if code?has_content>
+    ${code}
+    </#if>
+
+    <#if customeData?has_content>
+    ${customeData}
+    </#if>
+
+    public static void main(String[] args) {
+        System.out.println("I am a custom template!");
+    }
+}
+'''
+    Map data = new HashMap<String, Object>()
+    data.put("customeData", "public static final int x = 6;")
+    customData = data
+    templateName = "customTemplate"
+    templateSourceCode = template
+}
+
+project.tasks.publish.enabled = false

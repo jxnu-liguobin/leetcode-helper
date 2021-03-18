@@ -147,17 +147,15 @@ class LeetcodeFileTest {
         val data = mapOf(
             Pair(Constants.CLASS_NAME, question.questionFrontendId),
             Pair(Constants.CODE, codeNode?.second?.code),
-            Pair(Constants.PREFIX, "Leetcode_")
+            Pair(Constants.PREFIX, "leetcode_")
         )
         LeetcodeFileCreator.createFile(data, out, generatedLanguage)
         val files = Objects.requireNonNull<Array<File>>(out.listFiles())
 
-        getFileByName(files, "leetcode_1603.rs").let {
-            assertSameTrimmedContent(
-                File("src/test/resources/expected-classes/leetcode_1603.rs.txt"),
-                it
-            )
-        }
+        assertSameTrimmedContent(
+            File("src/test/resources/expected-classes/leetcode_1603.rs.txt"),
+            getFileByName(files, "leetcode_1603.rs")
+        )
     }
 
 

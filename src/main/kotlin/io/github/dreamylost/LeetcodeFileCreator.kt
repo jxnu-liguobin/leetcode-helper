@@ -10,7 +10,7 @@ import java.io.FileWriter
 object LeetcodeFileCreator {
 
     fun createFile(
-        dataModel: Map<String, String?>,
+        dataModel: Map<String, Any?>,
         outputDir: File,
         generatedLanguage: GeneratedLanguage
     ): File {

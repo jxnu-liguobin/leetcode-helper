@@ -6,4 +6,5 @@ pluginManagement {
 }
 
 rootProject.name = 'leetcode-helper'
+include 'examples'
 
