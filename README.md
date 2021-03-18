@@ -7,6 +7,18 @@
 
 目前以非登录状态查询题目。
 
+## 目录
+
+1. [原理](#原理)
+2. [使用](#使用)
+   1. [命令行中使用](#命令行中使用)
+   2. [Task中再封装使用](#Task中再封装使用)
+   3. [参数说明](#任务参数说明)
+   4. [内容示例](#内容示例)
+3. [插件拓展](#插件拓展)
+   1. [拓展参数说明](#拓展参数说明)
+   2. [含自定义数据的内容示例](#含自定义数据的内容示例)
+
 ## 原理
 
 根据LeetCode GraphQL API 反推Schema，使用codegen工具根据Schema生成客户端。 基于Kotlin编程实现。
@@ -31,6 +43,8 @@ buildscript {
 apply plugin: 'io.github.jxnu-liguobin.leetcode-helper'
 ```
 
+### 命令行中使用
+
 **在多模块项目中**
 
 ```shell
@@ -44,7 +58,22 @@ gradle java-examples:leetcodeCodegen  -PquestionTitle=add-two-numbers -Pgenerate
 gradle leetcodeCodegen  -PquestionTitle=add-two-numbers -PgeneratedLanguage=Java -PpackageName=io.github.test
 ```
 
-### 参数说明
+### Task中再封装使用
+
+想在自己项目中使用的话，可以将task再包装一下，以减少参数传递：
+
+```groovy
+task leetcodeCodegenService(type: io.github.dreamylost.task.LeetcodeGradleTask) {
+    questionTitle = "two-sum"// 这里都是写死的，但是在一个确定的项目中，只需要将该值设为动态读取即可，其他参数可写死，下同
+    generatedLanguage = io.github.dreamylost.GeneratedLanguage.Scala
+    packageName = "io.github.test"
+    prefix = "Leetcode_"
+    srcFolder = "src/main/scala"
+    serverConfig = io.github.dreamylost.invoker.ServerConfig.defaultConfig()
+}
+```
+
+### 任务参数说明
 
 1. __questionTitle__ 字符串，LeetCode题目的英文标题，目前没看到能根据ID查询的接口 __必填__
 2. __generatedLanguage__ `GeneratedLanguage`枚举，生成的模板代码的语言，目前支持以下语言（忽略大小写）：
@@ -62,7 +91,7 @@ gradle leetcodeCodegen  -PquestionTitle=add-two-numbers -PgeneratedLanguage=Java
 
 > 由于Rust不使用Gradle构建，只是存放在Gradle的项目中，所以不需要指定子项目，但须指定存放目录`srcFolder`，如`gradle leetcodeCodegen -PquestionTitle=add-two-numbers -PgeneratedLanguage=rust -PsrcFolder=rust-leetcode/src/test`
 
-## 结果示例
+### 内容示例
 
 暂不处理代码的格式化和依赖导入
 
@@ -178,33 +207,6 @@ mod test {
 }
 ```
 
-## 编写task
-
-想在自己项目中使用的话，可以将task再包装一下，以减少参数传递：
-
-```groovy
-task leetcodeCodegenService(type: io.github.dreamylost.task.LeetcodeGradleTask) {
-    questionTitle = "two-sum"
-    generatedLanguage = io.github.dreamylost.GeneratedLanguage.Scala
-    packageName = "io.github.test"
-    prefix = "Leetcode_"
-    srcFolder = "src/main/scala"
-    serverConfig = io.github.dreamylost.invoker.ServerConfig.defaultConfig()
-}
-```
-
-**在单个项目中**
-
-```shell
-gradle leetcodeCodegenService -PquestionTitle=two-sum
-```
-
-**在多模块项目中**
-
-```shell
-gradle moduleName:leetcodeCodegenService -PquestionTitle=two-sum
-```
-
 ## 插件拓展
 
 ```groovy
@@ -246,13 +248,13 @@ public class ${prefix!""}${className!""} {
 }
 ```
 
-### 参数说明
+### 拓展参数说明
 
 - __customData__ Map，自定义模板的数据
 - __templateName__ String，自定义模板名称，必填
 - __templateSourceCode__ String，自定义模板，必填
 
-### 结果
+### 含自定义数据的内容示例
 
 ```java
 package io.github.test;
