@@ -9,15 +9,21 @@ import java.io.FileWriter
 
 object LeetcodeFileCreator {
 
-    fun createFile(dataModel: Map<String, Any?>, outputDir: File, generatedLanguage: GeneratedLanguage): File {
-        val fileName =
-            dataModel[Constants.PREFIX].toString() + dataModel[Constants.CLASS_NAME].toString() + generatedLanguage.suffix
+    fun createFile(
+        dataModel: Map<String, String?>,
+        outputDir: File,
+        generatedLanguage: GeneratedLanguage
+    ): File {
+        val prefix = dataModel[Constants.PREFIX].toString()
+        val fileName = prefix + dataModel[Constants.CLASS_NAME].toString() + generatedLanguage.suffix
         val fileOutputDir = getFileTargetDirectory(dataModel, outputDir)
         val sourceFile = File(fileOutputDir, fileName)
         try {
             if (sourceFile.exists()) {
-                println("File exists: " + sourceFile.path)
+                println("file exists: " + sourceFile.path)
                 sourceFile.delete()
+            } else {
+                println("create File: $sourceFile")
             }
             val template = FreeMarkerTemplatesRegistry.getTemplateByLang(generatedLanguage)
             template.process(dataModel, FileWriter(sourceFile))

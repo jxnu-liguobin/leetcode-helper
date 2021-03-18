@@ -54,7 +54,7 @@ internal class ResolverProxy(
         if (projection != null) {
             val fields = getFieldsValue(projection)
             if (fields.isEmpty()) {
-                throw ExecuteExceptionAdapter(
+                throw ExecuteException(
                     "projection verification failed: ",
                     "fields of projection cannot be empty",
                     null

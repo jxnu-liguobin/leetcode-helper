@@ -3,7 +3,7 @@ package ${package};
 
 </#if>
 
-public class ${prefix}${className} {
+public class ${prefix!""}${className!""} {
     <#if code?has_content>
     ${code}
     </#if>

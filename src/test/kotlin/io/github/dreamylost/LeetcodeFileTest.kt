@@ -15,8 +15,8 @@ import kotlin.streams.toList
 
 class LeetcodeFileTest {
 
-    var serverConfig: ServerConfig? = null
-    val questionTitle = "design-parking-system"
+    private var serverConfig: ServerConfig? = null
+    private val questionTitle = "design-parking-system"
 
 
     @Before
@@ -136,5 +136,29 @@ class LeetcodeFileTest {
             getFileByName(files, "Leetcode_1603.scala")
         )
     }
+
+    @Test
+    fun generate_rust() {
+        generatedLanguage = GeneratedLanguage.Rust
+        val question = ClientInvoker.getQuestion(serverConfig!!, questionTitle)
+        val langCodes: List<Pair<String?, CodeSnippetNodeTO?>>? =
+            question.codeSnippets?.stream()?.map { Pair(it?.langSlug, it) }?.toList()
+        val codeNode = langCodes?.find { it.first == generatedLanguage.language }
+        val data = mapOf(
+            Pair(Constants.CLASS_NAME, question.questionFrontendId),
+            Pair(Constants.CODE, codeNode?.second?.code),
+            Pair(Constants.PREFIX, "Leetcode_")
+        )
+        LeetcodeFileCreator.createFile(data, out, generatedLanguage)
+        val files = Objects.requireNonNull<Array<File>>(out.listFiles())
+
+        getFileByName(files, "leetcode_1603.rs").let {
+            assertSameTrimmedContent(
+                File("src/test/resources/expected-classes/leetcode_1603.rs.txt"),
+                it
+            )
+        }
+    }
+
 
 }

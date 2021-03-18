@@ -61,7 +61,7 @@ object OkHttp {
         if (response.isSuccessful) {
             val jsonObject = JSONObject(response.body?.string())
             if (!jsonObject.isNull("errors")) {
-                throw ExecuteExceptionAdapter(
+                throw ExecuteException(
                     "found errors in response: ",
                     jsonObject.get("errors").toString(),
                     null
@@ -73,7 +73,7 @@ object OkHttp {
                 return deserialized(data, entityClassName)
             }
         } else {
-            throw ExecuteExceptionAdapter("response is fail", response.body?.string(), null)
+            throw ExecuteException("response is fail", response.body?.string(), null)
         }
     }
 
@@ -94,7 +94,7 @@ object OkHttp {
                 Jackson.objectMapper.readValue((data as JSONObject).toString(), targetClass)
             }
         } catch (e: Exception) {
-            throw ExecuteExceptionAdapter("deserialize data failed: ", e.localizedMessage, e)
+            throw ExecuteException("deserialize data failed: ", e.localizedMessage, e)
 
         }
     }

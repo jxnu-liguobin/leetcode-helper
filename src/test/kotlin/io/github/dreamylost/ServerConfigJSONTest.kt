@@ -27,7 +27,7 @@ class ServerConfigJSONTest {
         """.trimIndent()
 
         val serverConfig = Jackson.objectMapper.readValue<ServerConfig>(json)
-        assert(ServerConfig.default() == serverConfig)
+        assert(ServerConfig.defaultConfig() == serverConfig)
 
     }
 }

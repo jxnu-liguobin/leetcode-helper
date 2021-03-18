@@ -16,15 +16,15 @@
 ```groovy
 buildscript {
     repositories {
-       // 本地
+        // 本地
         mavenLocal()
-       // 远程
+        // 远程
         maven {
             url "https://plugins.gradle.org/m2/"
         }
     }
     dependencies {
-        classpath "io.github.jxnu-liguobin:leetcode-helper:0.1.0"
+        classpath "io.github.jxnu-liguobin:leetcode-helper:0.1.1"
     }
 }
 
@@ -32,14 +32,16 @@ apply plugin: 'io.github.jxnu-liguobin.leetcode-helper'
 ```
 
 **在多模块项目中**
+
 ```shell
 # 必须指定一个模块，否则每个模块都生成一个
- gradle java-examples:leetcodeCodegen  -PquestionTitle=add-two-numbers -PgeneratedLanguage=Java -PpackageName=io.github.test
+gradle java-examples:leetcodeCodegen  -PquestionTitle=add-two-numbers -PgeneratedLanguage=Java -PpackageName=io.github.test
 ```
 
 **在单个项目中**
+
 ```shell
- gradle leetcodeCodegen  -PquestionTitle=add-two-numbers -PgeneratedLanguage=Java -PpackageName=io.github.test
+gradle leetcodeCodegen  -PquestionTitle=add-two-numbers -PgeneratedLanguage=Java -PpackageName=io.github.test
 ```
 
 ## 参数说明
@@ -49,33 +51,39 @@ apply plugin: 'io.github.jxnu-liguobin.leetcode-helper'
     - Java
     - Scala
     - Kotlin（默认）
+    - Rust
 3. __packageName__ 生成的代码想要存放的目录，默认`io.github.dreamylost`
 4. __serverConfig__ 模板服务器的配置信息（JSON字符串）结构如下：
-   - serverHost 目前仅支持LeetCode，默认`https://leetcode-cn.com/graphql`
-   - headers 目前仅支持LeetCode，所以headers有默认值，如果默认值失效，可以自己添加，如：
-     ```json
-      {
-          "serverHost":"https://leetcode-cn.com/graphql",
-          "headers":{
-              "authority":"leetcode-cn.com",
-              "user-agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.192 Safari/537.36",
-              "content-type":"application/json",
-              "accept":"*/*",
-              "x-csrftoken":"euEpoiETQ7z3NFQn7AqTS53QnrjxiVHeBy5MQEsLsQpg0DyPVTS7w33zt5c5RxCK",
-              "x-definition-name":"https://leetcode-cn.com",
-              "sec-fetch-site":"same-origin",
-              "sec-fetch-mode":"cors",
-              "sec-fetch-dest":"empty"
-          }
-      }
-      ```
-5. __prefix__ 生成的模板代码的类名，默认`Leetcode_`
+    - serverHost 目前仅支持LeetCode，默认`https://leetcode-cn.com/graphql`
+    - headers 目前仅支持LeetCode，所以headers有默认值，如果默认值失效，可以自己添加，如：
+      ```json
+       {
+           "serverHost":"https://leetcode-cn.com/graphql",
+           "headers":{
+               "authority":"leetcode-cn.com",
+               "user-agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.192 Safari/537.36",
+               "content-type":"application/json",
+               "accept":"*/*",
+               "x-csrftoken":"euEpoiETQ7z3NFQn7AqTS53QnrjxiVHeBy5MQEsLsQpg0DyPVTS7w33zt5c5RxCK",
+               "x-definition-name":"https://leetcode-cn.com",
+               "sec-fetch-site":"same-origin",
+               "sec-fetch-mode":"cors",
+               "sec-fetch-dest":"empty"
+           }
+       }
+       ```
+5. __prefix__ 生成的模板代码的类名，默认`Leetcode_`，Rust会使用小写。
+6. __srcFolder__ 生成的文件的路径，默认为当前执行该插件任务所在的项目的源文件路径，如在`kotlin-leetcode`子项目中执行即为`src/main/kotlin`、在`java-leetcode`
+   子项目中执行即为`src/main/java`，而rust默认为`rust-leetcode/src`
+
+> 由于Rust不使用Gradle构建，只是存放在Gradle的项目中，所以不需要指定子项目，但须指定存放目录`srcFolder`，如`gradle leetcodeCodegen -PquestionTitle=add-two-numbers -PgeneratedLanguage=rust -PsrcFolder=rust-leetcode/src/test`
 
 ## 结果示例
 
 暂不处理代码的格式化和依赖导入
 
 **Kotlin**
+
 ```kotlin
 package io.github.dreamylost
 
@@ -83,26 +91,27 @@ package io.github.dreamylost
 object Leetcode_1603 {
     class ParkingSystem(big: Int, medium: Int, small: Int) {
 
-    fun addCar(carType: Int): Boolean {
+        fun addCar(carType: Int): Boolean {
+
+        }
 
     }
 
-}
-
-/**
- * Your ParkingSystem object will be instantiated and called as such:
- * var obj = ParkingSystem(big, medium, small)
- * var param_1 = obj.addCar(carType)
- */
+    /**
+     * Your ParkingSystem object will be instantiated and called as such:
+     * var obj = ParkingSystem(big, medium, small)
+     * var param_1 = obj.addCar(carType)
+     */
 
     @JvmStatic
     fun main(args: Array<String>) {
-      println("Hello World!")
+        println("Hello World!")
     }
 }
 ```
 
 **Java**
+
 ```Java
 package io.github.dreamylost;
 
@@ -110,20 +119,20 @@ package io.github.dreamylost;
 public class Leetcode_1603 {
     class ParkingSystem {
 
-    public ParkingSystem(int big, int medium, int small) {
+        public ParkingSystem(int big, int medium, int small) {
 
+        }
+
+        public boolean addCar(int carType) {
+
+        }
     }
 
-    public boolean addCar(int carType) {
-
-    }
-}
-
-/**
- * Your ParkingSystem object will be instantiated and called as such:
- * ParkingSystem obj = new ParkingSystem(big, medium, small);
- * boolean param_1 = obj.addCar(carType);
- */
+    /**
+     * Your ParkingSystem object will be instantiated and called as such:
+     * ParkingSystem obj = new ParkingSystem(big, medium, small);
+     * boolean param_1 = obj.addCar(carType);
+     */
 
     public static void main(String[] args) {
         System.out.println("Hello world!");
@@ -132,45 +141,82 @@ public class Leetcode_1603 {
 ```
 
 **Scala**
+
 ```scala
 package io.github.dreamylost
 
 
 object Leetcode_1603 extends App {
-   class ParkingSystem(_big: Int, _medium: Int, _small: Int) {
 
-      def addCar(carType: Int): Boolean = {
+  class ParkingSystem(_big: Int, _medium: Int, _small: Int) {
 
-      }
+    def addCar(carType: Int): Boolean = {
 
-   }
+    }
 
-   /**
-    * Your ParkingSystem object will be instantiated and called as such:
-    * var obj = new ParkingSystem(big, medium, small)
-    * var param_1 = obj.addCar(carType)
-    */
+  }
+
+  /**
+   * Your ParkingSystem object will be instantiated and called as such:
+   * var obj = new ParkingSystem(big, medium, small)
+   * var param_1 = obj.addCar(carType)
+   */
+}
+```
+
+**Rust**
+
+```rust
+struct ParkingSystem {}
+
+
+/**
+ * `&self` means the method takes an immutable reference.
+ * If you need a mutable reference, change it to `&mut self` instead.
+ */
+impl ParkingSystem {
+    fn new(big: i32, medium: i32, small: i32) -> Self {}
+
+    fn add_car(&self, car_type: i32) -> bool {}
+}
+
+/**
+ * Your ParkingSystem object will be instantiated and called as such:
+ * let obj = ParkingSystem::new(big, medium, small);
+ * let ret_1: bool = obj.add_car(carType);
+ */
+#[cfg(test)]
+mod test {
+    #[test]
+    fn test() {
+        println!("Hello world!")
+    }
 }
 ```
 
 ## 编写task
 
 想在自己项目中使用的话，可以将task再包装一下，以减少参数传递：
+
 ```groovy
 task leetcodeCodegenService(type: io.github.dreamylost.task.LeetcodeGradleTask) {
-   questionTitle = hasProperty('questionTitle') ? properties['questionTitle'] : "two-sum"
-   generatedLanguage = hasProperty('generatedLanguage') ? properties['generatedLanguage'] : "java"
-   packageName = hasProperty('packageName') ? properties['packageName'] : "io.github.test"
-   prefix = hasProperty('prefix') ? properties['prefix'] : "Leetcode_"
+    questionTitle = "two-sum"
+    generatedLanguage = io.github.dreamylost.GeneratedLanguage.Scala
+    packageName = "io.github.test"
+    prefix = "Leetcode_"
+    srcFolder = "src"
+    serverConfig = io.github.dreamylost.invoker.ServerConfig.defaultConfig()
 }
 ```
 
 **在单个项目中**
+
 ```shell
 gradle leetcodeCodegenService -PquestionTitle=two-sum
 ```
 
 **在多模块项目中**
+
 ```shell
 gradle moduleName:leetcodeCodegenService -PquestionTitle=two-sum
 ```

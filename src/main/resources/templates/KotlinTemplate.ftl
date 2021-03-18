@@ -3,7 +3,7 @@ package ${package}
 
 </#if>
 
-object ${prefix}${className} {
+object ${prefix!""}${className!""} {
     <#if code?has_content>
     ${code}
     </#if>

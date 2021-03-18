@@ -10,7 +10,7 @@ plugins {
 }
 
 group 'io.github.jxnu-liguobin'
-version '0.1.0'
+version '0.1.1'
 
 repositories {
     maven {
@@ -75,4 +75,9 @@ pluginBundle {
     vcsUrl = 'https://github.com/jxnu-liguobin/leetcode-helper'
     description = 'Gradle plugin for Leetcode'
     tags = ['graphql', 'graphql-java', 'Leetcode', 'kotlin']
+}
+
+java {
+    withJavadocJar()
+    withSourcesJar()
 }

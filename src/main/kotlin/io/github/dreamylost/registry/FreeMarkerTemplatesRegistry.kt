@@ -27,6 +27,7 @@ object FreeMarkerTemplatesRegistry {
         templateMap[GeneratedLanguage.Kotlin] = configuration.getTemplate("templates/KotlinTemplate.ftl")
         templateMap[GeneratedLanguage.Scala] = configuration.getTemplate("templates/ScalaTemplate.ftl")
         templateMap[GeneratedLanguage.Java] = configuration.getTemplate("templates/JavaTemplate.ftl")
+        templateMap[GeneratedLanguage.Rust] = configuration.getTemplate("templates/RustTemplate.ftl")
 
     }
 
