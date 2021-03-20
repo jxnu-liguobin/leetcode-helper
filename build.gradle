@@ -46,7 +46,7 @@ dependencies {
 /**
  * Generate apis and models in Kotlin
  */
-compileKotlin.dependsOn "graphqlCodegenKotlinService"
+//compileKotlin.dependsOn "graphqlCodegenKotlinService" // has a problem
 task graphqlCodegenKotlinService(type: GraphQLCodegenGradleTask) {
     graphqlSchemas.includePattern = "leetcode\\.graphqls"
     outputDir = new File("src/main/kotlin-graphql")
@@ -76,14 +76,6 @@ pluginBundle {
     vcsUrl = 'https://github.com/jxnu-liguobin/leetcode-helper'
     description = 'Gradle plugin for Leetcode'
     tags = ['graphql', 'graphql-java', 'Leetcode', 'kotlin']
-}
-
-java {
-    withJavadocJar()
-    withSourcesJar()
-}
-
-pluginBundle {
     sourceSets {
         main {
             java {
@@ -93,11 +85,15 @@ pluginBundle {
     }
 }
 
+java {
+    withJavadocJar()
+    withSourcesJar()
+}
+
 spotless {
     kotlin {
         ktlint('0.37.2').userData(['indent_size': '4', 'continuation_indent_size': '2', 'disabled_rules': 'no-wildcard-imports'])
         licenseHeader '/* Licensed under Apache-2.0 @梦境迷离 */'
     }
 }
-
-build.dependsOn 'spotlessApply'
+compileKotlin.dependsOn('spotlessApply')
