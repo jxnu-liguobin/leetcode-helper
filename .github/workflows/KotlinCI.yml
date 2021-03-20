@@ -26,3 +26,6 @@ jobs:
       - name: Build Examples
         working-directory: examples
         run: ./gradlew build
+      - name: Generate Leetcode for Examples
+        working-directory: examples
+        run: ./gradlew leetcodeCodegenService
