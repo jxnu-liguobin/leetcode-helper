@@ -1,10 +1,10 @@
 package com.github.dreamylost.invoker
 
 import com.github.dreamylost.Constants
-import io.github.graphql.resolver.QueryResolver
-import io.github.graphql.model.QuestionNodeResponseProjection
-import io.github.graphql.model.QuestionNodeTO
-import io.github.graphql.model.QuestionQueryRequest
+import com.github.graphql.resolver.QueryResolver
+import com.github.graphql.model.QuestionNodeResponseProjection
+import com.github.graphql.model.QuestionNodeTO
+import com.github.graphql.model.QuestionQueryRequest
 
 object ClientInvoker {
 

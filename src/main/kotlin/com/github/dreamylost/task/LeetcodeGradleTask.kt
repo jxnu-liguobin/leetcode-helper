@@ -2,13 +2,12 @@ package com.github.dreamylost.task
 
 import com.fasterxml.jackson.module.kotlin.readValue
 import com.github.dreamylost.*
-import io.github.dreamylost.*
 import com.github.dreamylost.invoker.ClientInvoker
 import com.github.dreamylost.invoker.Jackson
 import com.github.dreamylost.invoker.LeetcodeException
 import com.github.dreamylost.invoker.ServerConfig
 import com.github.dreamylost.registry.FreeMarkerTemplatesRegistry
-import io.github.graphql.model.CodeSnippetNodeTO
+import com.github.graphql.model.CodeSnippetNodeTO
 import org.gradle.api.DefaultTask
 import org.gradle.api.tasks.Input
 import org.gradle.api.tasks.Optional

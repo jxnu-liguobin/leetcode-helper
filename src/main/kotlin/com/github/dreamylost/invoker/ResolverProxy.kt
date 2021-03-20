@@ -4,7 +4,7 @@ import com.kobylynskyi.graphql.codegen.model.graphql.GraphQLOperationRequest
 import com.kobylynskyi.graphql.codegen.model.graphql.GraphQLRequest
 import com.kobylynskyi.graphql.codegen.model.graphql.GraphQLResponseField
 import com.kobylynskyi.graphql.codegen.model.graphql.GraphQLResponseProjection
-import io.github.graphql.*
+import com.github.graphql.*
 import java.lang.reflect.*
 import java.util.*
 

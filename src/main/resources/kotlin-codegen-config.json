@@ -5,8 +5,8 @@
   "generateImmutableModels": true,
   "generateToString": true,
   "generateEqualsAndHashCode": true,
-  "apiPackageName": "io.github.graphql.resolver",
-  "modelPackageName": "io.github.graphql.model",
+  "apiPackageName": "com.github.graphql.resolver",
+  "modelPackageName": "com.github.graphql.model",
   "generateModelOpenClasses": true,
   "modelNameSuffix": "TO",
   "apiInterfaceStrategy": "DO_NOT_GENERATE",
@@ -22,10 +22,10 @@
   },
   "customAnnotationsMapping": {
     "QuestionNode.metaData": [
-      "com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = io.github.dreamylost.JsonObjectDeserializer::class)"
+      "com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.github.dreamylost.JsonObjectDeserializer::class)"
     ],
     "QuestionNode.envInfo": [
-      "com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = io.github.dreamylost.JsonObjectDeserializer::class)"
+      "com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = com.github.dreamylost.JsonObjectDeserializer::class)"
     ]
   }
 }

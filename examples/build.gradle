@@ -6,7 +6,7 @@ buildscript {
         }
     }
     dependencies {
-        classpath "com.github.jxnu-liguobin:leetcode-helper:0.1.0"
+        classpath "com.github.jxnu-liguobin:leetcode-helper:0.1.2"
     }
 }
 
@@ -14,7 +14,7 @@ apply plugin: 'java'
 apply plugin: 'com.github.jxnu-liguobin.leetcode-helper'
 
 group 'com.github.jxnu-liguobin'
-version '0.1.1'
+version '0.1.2'
 
 repositories {
     mavenLocal()

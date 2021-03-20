@@ -10,14 +10,14 @@ plugins {
 }
 
 group 'com.github.jxnu-liguobin'
-version '0.1.0'
+version '0.1.2'
 
 repositories {
+    mavenLocal()
     maven {
         url 'https://repo.gradle.org/gradle/libs-releases-local'
     }
     mavenCentral()
-    mavenLocal()
     jcenter()
 }
 
