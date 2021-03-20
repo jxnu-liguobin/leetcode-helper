@@ -5,7 +5,6 @@ import com.fasterxml.jackson.module.kotlin.readValue
 import com.github.dreamylost.*
 import com.github.dreamylost.invoker.ClientInvoker
 import com.github.dreamylost.invoker.Jackson
-import com.github.dreamylost.invoker.LeetcodeException
 import com.github.dreamylost.invoker.ServerConfig
 import com.github.dreamylost.registry.FreeMarkerTemplatesRegistry
 import com.github.graphql.model.CodeSnippetNodeTO
@@ -59,6 +58,9 @@ abstract class LeetcodeGradleTask : DefaultTask() {
                 "\n srcFolder:$srcFolder" +
                 "\n customTemplate:${leetcodeExtension.templateName}"
         )
+        if (packageName != null && srcFolder != null) {
+            throw LeetcodeException("config error: ", "cann't use srcFolder when packageName was set", null)
+        }
         val question = ClientInvoker.getQuestion(serverConfig!!, questionTitle!!)
         val langCodes: List<Pair<String?, CodeSnippetNodeTO?>>? =
             question.codeSnippets?.stream()?.map { Pair(it?.langSlug, it) }?.toList()
@@ -134,7 +136,7 @@ abstract class LeetcodeGradleTask : DefaultTask() {
         if (prefix == null) {
             prefix = "Leetcode_"
         }
-        if (packageName == null) {
+        if (packageName == null && srcFolder == null) {
             packageName = "io.github.dreamylost"
         }
 

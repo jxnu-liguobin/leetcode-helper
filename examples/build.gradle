@@ -6,7 +6,7 @@ buildscript {
         }
     }
     dependencies {
-        classpath "com.github.jxnu-liguobin:leetcode-helper:0.1.2"
+        classpath "com.github.jxnu-liguobin:leetcode-helper:0.1.3"
     }
 }
 
@@ -14,7 +14,7 @@ apply plugin: 'java'
 apply plugin: 'com.github.jxnu-liguobin.leetcode-helper'
 
 group 'com.github.jxnu-liguobin'
-version '0.1.2'
+version '0.1.3'
 
 repositories {
     mavenLocal()
@@ -35,7 +35,6 @@ task leetcodeCodegenService(type: com.github.dreamylost.task.LeetcodeGradleTask)
     generatedLanguage = com.github.dreamylost.GeneratedLanguage.Java
     packageName = "io.github.test"
     prefix = "Leetcode_"
-    srcFolder = "src/main/java"
     serverConfig = com.github.dreamylost.invoker.ServerConfig.defaultConfig()
 }
 

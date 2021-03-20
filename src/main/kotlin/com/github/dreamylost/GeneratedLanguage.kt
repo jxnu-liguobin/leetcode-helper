@@ -1,8 +1,6 @@
 /* Licensed under Apache-2.0 @梦境迷离 */
 package com.github.dreamylost
 
-import com.github.dreamylost.invoker.LeetcodeException
-
 enum class GeneratedLanguage(val language: String, val suffix: String) {
     Java("java", ".java"),
     Scala("scala", ".scala"),

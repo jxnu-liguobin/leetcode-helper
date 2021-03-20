@@ -3,7 +3,6 @@ package com.github.dreamylost
 
 import com.github.dreamylost.registry.FreeMarkerTemplatesRegistry
 import com.kobylynskyi.graphql.codegen.model.DataModelFields
-import com.kobylynskyi.graphql.codegen.model.exception.UnableToCreateFileException
 import com.kobylynskyi.graphql.codegen.utils.Utils
 import java.io.File
 import java.io.FileWriter
@@ -15,23 +14,28 @@ object LeetcodeFileCreator {
         outputDir: File,
         generatedLanguage: GeneratedLanguage
     ): File {
+        prepareOutputDir(outputDir)
         val prefix = dataModel[Constants.PREFIX].toString()
         val fileName = prefix + dataModel[Constants.CLASS_NAME].toString() + generatedLanguage.suffix
         val fileOutputDir = getFileTargetDirectory(dataModel, outputDir)
         val sourceFile = File(fileOutputDir, fileName)
         try {
-            if (sourceFile.exists()) {
-                println("file exists: " + sourceFile.path)
-                sourceFile.delete()
+            if (!sourceFile.createNewFile()) {
+                throw LeetcodeException("file already exists: ", sourceFile.getPath(), null)
             } else {
-                println("create File: $sourceFile")
+                println("create file: " + sourceFile.path)
             }
             val template = FreeMarkerTemplatesRegistry.getTemplateByLang(generatedLanguage)
             template.process(dataModel, FileWriter(sourceFile))
         } catch (e: Exception) {
-            throw UnableToCreateFileException(e)
+            throw LeetcodeException("unable to create file: ", sourceFile.getPath(), e)
         }
         return sourceFile
+    }
+
+    fun prepareOutputDir(outputDir: File) {
+        Utils.deleteDir(outputDir)
+        Utils.createDirIfAbsent(outputDir)
     }
 
     private fun getFileTargetDirectory(dataModel: Map<String, Any?>, outputDir: File): File {

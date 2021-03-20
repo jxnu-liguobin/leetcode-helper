@@ -68,7 +68,6 @@ task leetcodeCodegenService(type: com.github.dreamylost.task.LeetcodeGradleTask)
     generatedLanguage = com.github.dreamylost.GeneratedLanguage.Scala
     packageName = "io.github.test"
     prefix = "Leetcode_"
-    srcFolder = "src/main/scala"
     serverConfig = com.github.dreamylost.invoker.ServerConfig.defaultConfig()
 }
 ```
@@ -87,7 +86,8 @@ task leetcodeCodegenService(type: com.github.dreamylost.task.LeetcodeGradleTask)
     - headers 目前仅支持LeetCode，所以headers有默认值，如果默认值失效，可以自己设置
 5. __prefix__ String，生成的模板代码的类名，默认`Leetcode_`，Rust会使用小写。
 6. __srcFolder__ String，生成的文件的路径，默认为当前执行该插件任务所在的项目的源文件路径，如在`kotlin-leetcode`子项目中执行即为`src/main/kotlin`、在`java-leetcode`
-   子项目中执行即为`src/main/java`，而rust默认为`rust-leetcode/src`
+   子项目中执行即为`src/main/java`，而rust默认为`rust-leetcode/src`。该选项不能与`packageName`同时使用。
+   
 
 > 由于Rust不使用Gradle构建，只是存放在Gradle的项目中，所以不需要指定子项目，但须指定存放目录`srcFolder`，如`gradle leetcodeCodegen -PquestionTitle=add-two-numbers -PgeneratedLanguage=rust -PsrcFolder=rust-leetcode/src/test`
 

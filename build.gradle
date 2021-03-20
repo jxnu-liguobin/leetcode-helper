@@ -11,7 +11,7 @@ plugins {
 }
 
 group 'com.github.jxnu-liguobin'
-version '0.1.2'
+version '0.1.3'
 
 repositories {
     mavenLocal()
@@ -46,7 +46,7 @@ dependencies {
 /**
  * Generate apis and models in Kotlin
  */
-//compileKotlin.dependsOn "graphqlCodegenKotlinService" // has a problem
+compileKotlin.dependsOn "graphqlCodegenKotlinService"
 task graphqlCodegenKotlinService(type: GraphQLCodegenGradleTask) {
     graphqlSchemas.includePattern = "leetcode\\.graphqls"
     outputDir = new File("src/main/kotlin-graphql")

@@ -15,9 +15,6 @@ data class ServerConfig(val serverHost: String, val headers: Map<String, String>
 data class ExecuteException(val prefix: String, val msg: String?, val e: Throwable?) :
     RuntimeException(msg, e)
 
-data class LeetcodeException(val prefix: String, val msg: String?, val e: Throwable?) :
-    RuntimeException(msg, e)
-
 fun isPrimitive(entityClazzName: String?): Boolean {
     val primitiveTypes = listOf("Int", "Boolean", "String", "Short", "Byte", "Long", "Char", "Float")
     val optPrimitiveTypes = primitiveTypes.map { "$it?" }
