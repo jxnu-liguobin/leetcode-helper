@@ -1,23 +1,23 @@
+/* Licensed under Apache-2.0 @梦境迷离 */
 package com.github.dreamylost
 
-import com.kobylynskyi.graphql.codegen.utils.Utils
 import com.github.dreamylost.TestUtils.assertSameTrimmedContent
 import com.github.dreamylost.TestUtils.getFileByName
 import com.github.dreamylost.invoker.ClientInvoker
 import com.github.dreamylost.invoker.ServerConfig
-import io.github.graphql.model.CodeSnippetNodeTO
+import com.github.graphql.model.CodeSnippetNodeTO
+import com.kobylynskyi.graphql.codegen.utils.Utils
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
 import java.io.File
-import java.util.*
+import java.util.Objects
 import kotlin.streams.toList
 
 class LeetcodeFileTest {
 
     private var serverConfig: ServerConfig? = null
     private val questionTitle = "design-parking-system"
-
 
     @Before
     fun init() {
@@ -32,16 +32,12 @@ class LeetcodeFileTest {
         headers["sec-fetch-site"] = "same-origin"
         headers["sec-fetch-mode"] = "cors"
         headers["sec-fetch-dest"] = "empty"
-        serverConfig = ServerConfig(
-            Constants.HOST,
-            headers
-        )
+        serverConfig = ServerConfig(Constants.HOST, headers)
     }
 
     private var generatedLanguage: GeneratedLanguage = GeneratedLanguage.Kotlin
     var out: File = File("build/generated")
     var outPackage: File = File("build/generated/io/github/dreamylost")
-
 
     @After
     fun cleanup() {
@@ -55,22 +51,19 @@ class LeetcodeFileTest {
         val langCodes: List<Pair<String?, CodeSnippetNodeTO?>>? =
             question.codeSnippets?.stream()?.map { Pair(it?.langSlug, it) }?.toList()
         val codeNode = langCodes?.find { it.first == generatedLanguage.language }
-        val data = mapOf(
-            Pair(Constants.CLASS_NAME, question.questionFrontendId),
-            Pair(Constants.CODE, codeNode?.second?.code),
-            Pair(Constants.PREFIX, "Leetcode_")
-        )
+        val data =
+            mapOf(
+                Pair(Constants.CLASS_NAME, question.questionFrontendId),
+                Pair(Constants.CODE, codeNode?.second?.code),
+                Pair(Constants.PREFIX, "Leetcode_")
+            )
         LeetcodeFileCreator.createFile(data, out, generatedLanguage)
         val files = Objects.requireNonNull<Array<File>>(out.listFiles())
 
         getFileByName(files, "Leetcode_1603.kt").let {
-            assertSameTrimmedContent(
-                File("src/test/resources/expected-classes/Leetcode_1603.kt.txt"),
-                it
-            )
+            assertSameTrimmedContent(File("src/test/resources/expected-classes/Leetcode_1603.kt.txt"), it)
         }
     }
-
 
     @Test
     fun generate_kotlin_package() {
@@ -78,12 +71,13 @@ class LeetcodeFileTest {
         val langCodes: List<Pair<String?, CodeSnippetNodeTO?>>? =
             question.codeSnippets?.stream()?.map { Pair(it?.langSlug, it) }?.toList()
         val codeNode = langCodes?.find { it.first == generatedLanguage.language }
-        val data = mapOf(
-            Pair(Constants.CLASS_NAME, question.questionFrontendId),
-            Pair(Constants.CODE, codeNode?.second?.code),
-            Pair(Constants.PREFIX, "Leetcode_"),
-            Pair(Constants.PACKAGE, "io.github.dreamylost")
-        )
+        val data =
+            mapOf(
+                Pair(Constants.CLASS_NAME, question.questionFrontendId),
+                Pair(Constants.CODE, codeNode?.second?.code),
+                Pair(Constants.PREFIX, "Leetcode_"),
+                Pair(Constants.PACKAGE, "io.github.dreamylost")
+            )
         LeetcodeFileCreator.createFile(data, out, generatedLanguage)
         val files = outPackage.listFiles()
 
@@ -100,12 +94,13 @@ class LeetcodeFileTest {
         val langCodes: List<Pair<String?, CodeSnippetNodeTO?>>? =
             question.codeSnippets?.stream()?.map { Pair(it?.langSlug, it) }?.toList()
         val codeNode = langCodes?.find { it.first == generatedLanguage.language }
-        val data = mapOf(
-            Pair(Constants.CLASS_NAME, question.questionFrontendId),
-            Pair(Constants.CODE, codeNode?.second?.code),
-            Pair(Constants.PREFIX, "Leetcode_"),
-            Pair(Constants.PACKAGE, "io.github.dreamylost")
-        )
+        val data =
+            mapOf(
+                Pair(Constants.CLASS_NAME, question.questionFrontendId),
+                Pair(Constants.CODE, codeNode?.second?.code),
+                Pair(Constants.PREFIX, "Leetcode_"),
+                Pair(Constants.PACKAGE, "io.github.dreamylost")
+            )
         LeetcodeFileCreator.createFile(data, out, generatedLanguage)
         val files = outPackage.listFiles()
 
@@ -122,12 +117,13 @@ class LeetcodeFileTest {
         val langCodes: List<Pair<String?, CodeSnippetNodeTO?>>? =
             question.codeSnippets?.stream()?.map { Pair(it?.langSlug, it) }?.toList()
         val codeNode = langCodes?.find { it.first == generatedLanguage.language }
-        val data = mapOf(
-            Pair(Constants.CLASS_NAME, question.questionFrontendId),
-            Pair(Constants.CODE, codeNode?.second?.code),
-            Pair(Constants.PREFIX, "Leetcode_"),
-            Pair(Constants.PACKAGE, "io.github.dreamylost")
-        )
+        val data =
+            mapOf(
+                Pair(Constants.CLASS_NAME, question.questionFrontendId),
+                Pair(Constants.CODE, codeNode?.second?.code),
+                Pair(Constants.PREFIX, "Leetcode_"),
+                Pair(Constants.PACKAGE, "io.github.dreamylost")
+            )
         LeetcodeFileCreator.createFile(data, out, generatedLanguage)
         val files = outPackage.listFiles()
 
@@ -144,11 +140,12 @@ class LeetcodeFileTest {
         val langCodes: List<Pair<String?, CodeSnippetNodeTO?>>? =
             question.codeSnippets?.stream()?.map { Pair(it?.langSlug, it) }?.toList()
         val codeNode = langCodes?.find { it.first == generatedLanguage.language }
-        val data = mapOf(
-            Pair(Constants.CLASS_NAME, question.questionFrontendId),
-            Pair(Constants.CODE, codeNode?.second?.code),
-            Pair(Constants.PREFIX, "leetcode_")
-        )
+        val data =
+            mapOf(
+                Pair(Constants.CLASS_NAME, question.questionFrontendId),
+                Pair(Constants.CODE, codeNode?.second?.code),
+                Pair(Constants.PREFIX, "leetcode_")
+            )
         LeetcodeFileCreator.createFile(data, out, generatedLanguage)
         val files = Objects.requireNonNull<Array<File>>(out.listFiles())
 
@@ -157,6 +154,4 @@ class LeetcodeFileTest {
             getFileByName(files, "leetcode_1603.rs")
         )
     }
-
-
 }

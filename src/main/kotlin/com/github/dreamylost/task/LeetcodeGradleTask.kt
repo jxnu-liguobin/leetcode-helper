@@ -1,3 +1,4 @@
+/* Licensed under Apache-2.0 @梦境迷离 */
 package com.github.dreamylost.task
 
 import com.fasterxml.jackson.module.kotlin.readValue
@@ -17,30 +18,22 @@ import kotlin.streams.toList
 
 abstract class LeetcodeGradleTask : DefaultTask() {
 
+    init {
+        group = "Leetcode"
+    }
+
     // 必填，这里使用Option是为了兼容属性变量和task输入
-    @get:Input
-    @get:Optional
-    abstract var questionTitle: String?
+    @get:Input @get:Optional abstract var questionTitle: String?
 
-    @get:Input
-    @get:Optional
-    abstract var serverConfig: ServerConfig?
+    @get:Input @get:Optional abstract var serverConfig: ServerConfig?
 
-    @get:Input
-    @get:Optional
-    abstract var generatedLanguage: GeneratedLanguage?
+    @get:Input @get:Optional abstract var generatedLanguage: GeneratedLanguage?
 
-    @get:Input
-    @get:Optional
-    abstract var packageName: String?
+    @get:Input @get:Optional abstract var packageName: String?
 
-    @get:Input
-    @get:Optional
-    abstract var prefix: String?
+    @get:Input @get:Optional abstract var prefix: String?
 
-    @get:Input
-    @get:Optional
-    abstract var srcFolder: String?
+    @get:Input @get:Optional abstract var srcFolder: String?
 
     @TaskAction
     open fun leetcodeHelper() {
@@ -58,24 +51,25 @@ abstract class LeetcodeGradleTask : DefaultTask() {
             }
         }
         println(
-            "config:  \n questionTitle:${questionTitle}" +
-                    "\n serverConfig:${serverConfig}" +
-                    "\n generatedLanguage:${generatedLanguage}" +
-                    "\n packageName:${packageName}" +
-                    "\n prefix:${prefix}" +
-                    "\n srcFolder:$srcFolder" +
-                    "\n customTemplate:${leetcodeExtension.templateName}"
+            "config:  \n questionTitle:$questionTitle" +
+                "\n serverConfig:$serverConfig" +
+                "\n generatedLanguage:$generatedLanguage" +
+                "\n packageName:$packageName" +
+                "\n prefix:$prefix" +
+                "\n srcFolder:$srcFolder" +
+                "\n customTemplate:${leetcodeExtension.templateName}"
         )
         val question = ClientInvoker.getQuestion(serverConfig!!, questionTitle!!)
         val langCodes: List<Pair<String?, CodeSnippetNodeTO?>>? =
             question.codeSnippets?.stream()?.map { Pair(it?.langSlug, it) }?.toList()
         val codeNode = langCodes?.find { it.first == generatedLanguage!!.language }
-        val data = mapOf(
-            Pair(Constants.CLASS_NAME, question.questionFrontendId),
-            Pair(Constants.PREFIX, prefix),
-            Pair(Constants.PACKAGE, packageName),
-            Pair(Constants.CODE, codeNode?.second?.code),
-        )
+        val data =
+            mapOf(
+                Pair(Constants.CLASS_NAME, question.questionFrontendId),
+                Pair(Constants.PREFIX, prefix),
+                Pair(Constants.PACKAGE, packageName),
+                Pair(Constants.CODE, codeNode?.second?.code),
+            )
         LeetcodeFileCreator.createFile(
             data.plus(leetcodeExtension.customData),
             buildSrcFolder(srcFolder, generatedLanguage!!),
@@ -108,7 +102,9 @@ abstract class LeetcodeGradleTask : DefaultTask() {
         }
         if (project.properties.containsKey("generatedLanguage")) {
             generatedLanguage =
-                ExtractGeneratedLanguage.extract(project.properties["generatedLanguage"].toString().toLowerCase())
+                ExtractGeneratedLanguage.extract(
+                    project.properties["generatedLanguage"].toString().toLowerCase()
+                )
         }
         if (project.properties.containsKey("serverConfig")) {
             serverConfig = Jackson.objectMapper.readValue(project.properties["serverConfig"].toString())

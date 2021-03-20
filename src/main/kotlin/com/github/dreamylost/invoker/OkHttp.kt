@@ -1,3 +1,4 @@
+/* Licensed under Apache-2.0 @梦境迷离 */
 package com.github.dreamylost.invoker
 
 import com.fasterxml.jackson.annotation.JsonInclude
@@ -18,7 +19,6 @@ import okhttp3.RequestBody.Companion.toRequestBody
 import org.json.JSONArray
 import org.json.JSONObject
 import java.util.concurrent.TimeUnit
-
 
 object OkHttp {
 
@@ -41,30 +41,23 @@ object OkHttp {
         println("host: ${config.serverHost}")
         println("headers: ${config.headers}")
         println("graphql request body: $httpRequestBody")
-        val rb = Request.Builder().url(config.serverHost).addHeader("Accept", ApplicationJson)
-            .post(httpRequestBody.toRequestBody(json))
-        config.headers.forEach {
-            run {
-                rb.addHeader(it.key, it.value)
-            }
-        }
+        val rb =
+            Request.Builder()
+                .url(config.serverHost)
+                .addHeader("Accept", ApplicationJson)
+                .post(httpRequestBody.toRequestBody(json))
+        config.headers.forEach { run { rb.addHeader(it.key, it.value) } }
         return rb
     }
 
-    fun syncRunQuery(
-        config: ServerConfig,
-        entityClassName: String,
-        request: GraphQLRequest
-    ): Any? {
+    fun syncRunQuery(config: ServerConfig, entityClassName: String, request: GraphQLRequest): Any? {
         val rb = buildRequest(config, request)
         val response = client.newCall(rb.build()).execute()
         if (response.isSuccessful) {
             val jsonObject = JSONObject(response.body?.string())
             if (!jsonObject.isNull("errors")) {
                 throw ExecuteException(
-                    "found errors in response: ",
-                    jsonObject.get("errors").toString(),
-                    null
+                    "found errors in response: ", jsonObject.get("errors").toString(), null
                 )
             } else {
                 val dataJSON = jsonObject.getJSONObject("data")
@@ -86,7 +79,8 @@ object OkHttp {
         return try {
             if (data is JSONArray) {
                 for (i in 0 until data.length()) {
-                    val e = Jackson.objectMapper.readValue((data.get(i) as JSONObject).toString(), targetClass)
+                    val e =
+                        Jackson.objectMapper.readValue((data.get(i) as JSONObject).toString(), targetClass)
                     result.add(e)
                 }
                 result
@@ -95,12 +89,12 @@ object OkHttp {
             }
         } catch (e: Exception) {
             throw ExecuteException("deserialize data failed: ", e.localizedMessage, e)
-
         }
     }
 }
 
-// Pseudo adaptation, avoiding the interdependence of three languages, using independent implementation.
+// Pseudo adaptation, avoiding the interdependence of three languages, using independent
+// implementation.
 object Jackson {
 
     val objectMapper = jsonMapper {

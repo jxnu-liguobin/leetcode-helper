@@ -1,10 +1,11 @@
+/* Licensed under Apache-2.0 @梦境迷离 */
 package com.github.dreamylost.invoker
 
+import com.github.graphql.*
 import com.kobylynskyi.graphql.codegen.model.graphql.GraphQLOperationRequest
 import com.kobylynskyi.graphql.codegen.model.graphql.GraphQLRequest
 import com.kobylynskyi.graphql.codegen.model.graphql.GraphQLResponseField
 import com.kobylynskyi.graphql.codegen.model.graphql.GraphQLResponseProjection
-import com.github.graphql.*
 import java.lang.reflect.*
 import java.util.*
 
@@ -24,12 +25,13 @@ internal class ResolverProxy(
     private fun proxyInvoke(method: Method, args: Array<out Any>?): Any? {
         val parameters = method.parameters.toList()
         val type = method.genericReturnType
-        val entityClassName = if (type is ParameterizedType) {
-            val parameterizedType = type.actualTypeArguments
-            parameterizedType[0].typeName
-        } else {
-            type.typeName
-        }
+        val entityClassName =
+            if (type is ParameterizedType) {
+                val parameterizedType = type.actualTypeArguments
+                parameterizedType[0].typeName
+            } else {
+                type.typeName
+            }
 
         if (isPrimitive(entityClassName)) {
             assert(projection == null)
@@ -55,9 +57,7 @@ internal class ResolverProxy(
             val fields = getFieldsValue(projection)
             if (fields.isEmpty()) {
                 throw ExecuteException(
-                    "projection verification failed: ",
-                    "fields of projection cannot be empty",
-                    null
+                    "projection verification failed: ", "fields of projection cannot be empty", null
                 )
             }
         }

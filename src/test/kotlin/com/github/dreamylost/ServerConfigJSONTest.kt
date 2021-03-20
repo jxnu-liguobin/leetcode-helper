@@ -1,3 +1,4 @@
+/* Licensed under Apache-2.0 @梦境迷离 */
 package com.github.dreamylost
 
 import com.fasterxml.jackson.module.kotlin.readValue
@@ -9,7 +10,8 @@ class ServerConfigJSONTest {
 
     @Test
     fun read_json() {
-        val json = """
+        val json =
+            """
             {
                 "serverHost":"https://leetcode-cn.com/graphql",
                 "headers":{
@@ -24,10 +26,9 @@ class ServerConfigJSONTest {
                     "sec-fetch-dest":"empty"
                 }
             }
-        """.trimIndent()
+            """.trimIndent()
 
         val serverConfig = Jackson.objectMapper.readValue<ServerConfig>(json)
         assert(ServerConfig.defaultConfig() == serverConfig)
-
     }
 }

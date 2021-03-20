@@ -1,3 +1,4 @@
+/* Licensed under Apache-2.0 @梦境迷离 */
 package com.github.dreamylost
 
 object Constants {
@@ -22,5 +23,4 @@ object Constants {
         headers["sec-fetch-dest"] = "empty"
         return headers
     }
-
 }

@@ -1,3 +1,4 @@
+/* Licensed under Apache-2.0 @梦境迷离 */
 package com.github.dreamylost
 
 import com.kobylynskyi.graphql.codegen.utils.Utils
@@ -12,13 +13,10 @@ object TestUtils {
     @kotlin.jvm.Throws(FileNotFoundException::class)
     fun getFileByName(files: Array<File>?, fileName: String): File {
         return Arrays.stream(files)
-            .filter { f: File ->
-                f.name.equals(fileName, ignoreCase = true)
-            }
+            .filter { f: File -> f.name.equals(fileName, ignoreCase = true) }
             .findFirst()
             .orElseThrow { FileNotFoundException() }
     }
-
 
     @Throws(IOException::class)
     fun assertSameTrimmedContent(expected: File, file: File) {

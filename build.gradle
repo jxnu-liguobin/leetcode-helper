@@ -7,6 +7,7 @@ plugins {
     id "com.gradle.plugin-publish" version "0.13.0"
     id "java-gradle-plugin"
     id 'maven-publish'
+    id "com.diffplug.spotless" version "5.11.0"
 }
 
 group 'com.github.jxnu-liguobin'
@@ -91,3 +92,12 @@ pluginBundle {
         }
     }
 }
+
+spotless {
+    kotlin {
+        ktlint('0.37.2').userData(['indent_size': '4', 'continuation_indent_size': '2', 'disabled_rules': 'no-wildcard-imports'])
+        licenseHeader '/* Licensed under Apache-2.0 @梦境迷离 */'
+    }
+}
+
+build.dependsOn 'spotlessApply'

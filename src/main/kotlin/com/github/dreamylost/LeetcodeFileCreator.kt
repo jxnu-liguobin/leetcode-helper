@@ -1,9 +1,10 @@
+/* Licensed under Apache-2.0 @梦境迷离 */
 package com.github.dreamylost
 
+import com.github.dreamylost.registry.FreeMarkerTemplatesRegistry
 import com.kobylynskyi.graphql.codegen.model.DataModelFields
 import com.kobylynskyi.graphql.codegen.model.exception.UnableToCreateFileException
 import com.kobylynskyi.graphql.codegen.utils.Utils
-import com.github.dreamylost.registry.FreeMarkerTemplatesRegistry
 import java.io.File
 import java.io.FileWriter
 
@@ -31,17 +32,17 @@ object LeetcodeFileCreator {
             throw UnableToCreateFileException(e)
         }
         return sourceFile
-
     }
 
     private fun getFileTargetDirectory(dataModel: Map<String, Any?>, outputDir: File): File {
         val targetDir: File
         val packageName = dataModel[DataModelFields.PACKAGE]
-        targetDir = if (packageName != null && Utils.isNotBlank(packageName.toString())) {
-            File(outputDir, packageName.toString().replace(".", File.separator))
-        } else {
-            outputDir
-        }
+        targetDir =
+            if (packageName != null && Utils.isNotBlank(packageName.toString())) {
+                File(outputDir, packageName.toString().replace(".", File.separator))
+            } else {
+                outputDir
+            }
         Utils.createDirIfAbsent(targetDir)
         return targetDir
     }

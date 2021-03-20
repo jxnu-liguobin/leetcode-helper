@@ -18,6 +18,8 @@ jobs:
         with:
           java-version: 1.8
 
+      - name: Check Code Style
+        run: ./gradlew spotlessCheck
       - name: PublishToLocal Codegen Helper 
         run: ./gradlew publishToMavenLocal --warning-mode all
 
