@@ -1,4 +1,4 @@
-package io.github.dreamylost.invoker
+package com.github.dreamylost.invoker
 
 import com.kobylynskyi.graphql.codegen.model.graphql.GraphQLOperationRequest
 import com.kobylynskyi.graphql.codegen.model.graphql.GraphQLResponseProjection

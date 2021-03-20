@@ -1,6 +1,6 @@
-package io.github.dreamylost
+package com.github.dreamylost
 
-import io.github.dreamylost.task.LeetcodeGradleTask
+import com.github.dreamylost.task.LeetcodeGradleTask
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 

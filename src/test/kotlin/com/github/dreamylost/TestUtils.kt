@@ -1,4 +1,4 @@
-package io.github.dreamylost
+package com.github.dreamylost
 
 import com.kobylynskyi.graphql.codegen.utils.Utils
 import java.io.File

@@ -1,4 +1,4 @@
-package io.github.dreamylost
+package com.github.dreamylost
 
 import com.fasterxml.jackson.core.JsonParser
 import com.fasterxml.jackson.databind.DeserializationContext

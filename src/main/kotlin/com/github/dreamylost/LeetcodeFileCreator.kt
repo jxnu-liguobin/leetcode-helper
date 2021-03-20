@@ -1,9 +1,9 @@
-package io.github.dreamylost
+package com.github.dreamylost
 
 import com.kobylynskyi.graphql.codegen.model.DataModelFields
 import com.kobylynskyi.graphql.codegen.model.exception.UnableToCreateFileException
 import com.kobylynskyi.graphql.codegen.utils.Utils
-import io.github.dreamylost.registry.FreeMarkerTemplatesRegistry
+import com.github.dreamylost.registry.FreeMarkerTemplatesRegistry
 import java.io.File
 import java.io.FileWriter
 

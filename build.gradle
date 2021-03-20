@@ -9,8 +9,8 @@ plugins {
     id 'maven-publish'
 }
 
-group 'io.github.jxnu-liguobin'
-version '0.1.2'
+group 'com.github.jxnu-liguobin'
+version '0.1.0'
 
 repositories {
     maven {
@@ -62,10 +62,10 @@ tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
 gradlePlugin {
     plugins {
         leetcodeCodegen {
-            id = 'io.github.jxnu-liguobin.leetcode-helper'
+            id = 'com.github.jxnu-liguobin.leetcode-helper'
             displayName = 'Leetcode Helper Plugin'
             description = project.description
-            implementationClass = 'io.github.dreamylost.LeetcodeGradlePlugin'
+            implementationClass = 'com.github.dreamylost.LeetcodeGradlePlugin'
         }
     }
 }

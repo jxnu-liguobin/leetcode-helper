@@ -1,6 +1,6 @@
-package io.github.dreamylost
+package com.github.dreamylost
 
-import io.github.dreamylost.invoker.LeetcodeException
+import com.github.dreamylost.invoker.LeetcodeException
 
 enum class GeneratedLanguage(val language: String, val suffix: String) {
     Java("java", ".java"),

@@ -1,4 +1,4 @@
-package io.github.dreamylost.invoker
+package com.github.dreamylost.invoker
 
 import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.databind.DeserializationFeature

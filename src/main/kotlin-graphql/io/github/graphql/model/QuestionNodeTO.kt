@@ -1,5 +1,6 @@
 package io.github.graphql.model
 
+import com.github.dreamylost.JsonObjectDeserializer
 import com.kobylynskyi.graphql.codegen.model.graphql.GraphQLRequestSerializer
 import java.util.Objects
 import java.util.StringJoiner
@@ -10,10 +11,10 @@ open class QuestionNodeTO(
     val title: String,
     val codeSnippets: List<CodeSnippetNodeTO>?,
     val topicTags: List<TopicTagNodeTO>?,
-    @get:com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = io.github.dreamylost.JsonObjectDeserializer::class)
+    @get:com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = JsonObjectDeserializer::class)
     val metaData: org.json.JSONObject?,
     val exampleTestcases: String?,
-    @get:com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = io.github.dreamylost.JsonObjectDeserializer::class)
+    @get:com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = JsonObjectDeserializer::class)
     val envInfo: org.json.JSONObject?
 ) {
 

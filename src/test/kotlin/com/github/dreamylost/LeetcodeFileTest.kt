@@ -1,10 +1,10 @@
-package io.github.dreamylost
+package com.github.dreamylost
 
 import com.kobylynskyi.graphql.codegen.utils.Utils
-import io.github.dreamylost.TestUtils.assertSameTrimmedContent
-import io.github.dreamylost.TestUtils.getFileByName
-import io.github.dreamylost.invoker.ClientInvoker
-import io.github.dreamylost.invoker.ServerConfig
+import com.github.dreamylost.TestUtils.assertSameTrimmedContent
+import com.github.dreamylost.TestUtils.getFileByName
+import com.github.dreamylost.invoker.ClientInvoker
+import com.github.dreamylost.invoker.ServerConfig
 import io.github.graphql.model.CodeSnippetNodeTO
 import org.junit.After
 import org.junit.Before

@@ -6,15 +6,15 @@ buildscript {
         }
     }
     dependencies {
-        classpath "io.github.jxnu-liguobin:leetcode-helper:0.1.2"
+        classpath "com.github.jxnu-liguobin:leetcode-helper:0.1.0"
     }
 }
 
 apply plugin: 'java'
-apply plugin: 'io.github.jxnu-liguobin.leetcode-helper'
+apply plugin: 'com.github.jxnu-liguobin.leetcode-helper'
 
-group 'io.github.jxnu-liguobin'
-version '0.1.2'
+group 'com.github.jxnu-liguobin'
+version '0.1.1'
 
 repositories {
     mavenLocal()
@@ -30,13 +30,13 @@ test {
     useJUnitPlatform()
 }
 
-task leetcodeCodegenService(type: io.github.dreamylost.task.LeetcodeGradleTask) {
+task leetcodeCodegenService(type: com.github.dreamylost.task.LeetcodeGradleTask) {
     questionTitle = "two-sum"
-    generatedLanguage = io.github.dreamylost.GeneratedLanguage.Java
+    generatedLanguage = com.github.dreamylost.GeneratedLanguage.Java
     packageName = "io.github.test"
     prefix = "Leetcode_"
     srcFolder = "src/main/java"
-    serverConfig = io.github.dreamylost.invoker.ServerConfig.defaultConfig()
+    serverConfig = com.github.dreamylost.invoker.ServerConfig.defaultConfig()
 }
 
 leetcodeExtension {

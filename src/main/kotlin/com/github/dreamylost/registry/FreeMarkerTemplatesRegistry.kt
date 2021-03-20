@@ -1,11 +1,11 @@
-package io.github.dreamylost.registry
+package com.github.dreamylost.registry
 
 import freemarker.ext.beans.BeansWrapper
 import freemarker.template.Configuration
 import freemarker.template.Template
 import freemarker.template.TemplateExceptionHandler
-import io.github.dreamylost.GeneratedLanguage
-import io.github.dreamylost.LeetcodeGradlePlugin
+import com.github.dreamylost.GeneratedLanguage
+import com.github.dreamylost.LeetcodeGradlePlugin
 import java.util.*
 
 

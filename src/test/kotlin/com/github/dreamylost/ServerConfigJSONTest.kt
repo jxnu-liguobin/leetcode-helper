@@ -1,8 +1,8 @@
-package io.github.dreamylost
+package com.github.dreamylost
 
 import com.fasterxml.jackson.module.kotlin.readValue
-import io.github.dreamylost.invoker.Jackson
-import io.github.dreamylost.invoker.ServerConfig
+import com.github.dreamylost.invoker.Jackson
+import com.github.dreamylost.invoker.ServerConfig
 import org.junit.Test
 
 class ServerConfigJSONTest {

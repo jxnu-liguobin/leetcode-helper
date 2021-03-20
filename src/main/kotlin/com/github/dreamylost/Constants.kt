@@ -1,4 +1,4 @@
-package io.github.dreamylost
+package com.github.dreamylost
 
 object Constants {
 

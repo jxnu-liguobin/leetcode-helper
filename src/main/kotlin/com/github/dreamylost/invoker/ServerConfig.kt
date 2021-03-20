@@ -1,6 +1,6 @@
-package io.github.dreamylost.invoker
+package com.github.dreamylost.invoker
 
-import io.github.dreamylost.Constants
+import com.github.dreamylost.Constants
 
 data class ServerConfig(
     val serverHost: String,

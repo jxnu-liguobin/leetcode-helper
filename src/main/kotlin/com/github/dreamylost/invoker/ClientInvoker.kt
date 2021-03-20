@@ -1,6 +1,6 @@
-package io.github.dreamylost.invoker
+package com.github.dreamylost.invoker
 
-import io.github.dreamylost.Constants
+import com.github.dreamylost.Constants
 import io.github.graphql.resolver.QueryResolver
 import io.github.graphql.model.QuestionNodeResponseProjection
 import io.github.graphql.model.QuestionNodeTO

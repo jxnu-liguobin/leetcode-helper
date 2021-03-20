@@ -36,11 +36,11 @@ buildscript {
         }
     }
     dependencies {
-        classpath "io.github.jxnu-liguobin:leetcode-helper:0.1.1"
+        classpath "com.github.jxnu-liguobin:leetcode-helper:0.1.0"
     }
 }
 
-apply plugin: 'io.github.jxnu-liguobin.leetcode-helper'
+apply plugin: 'com.github.jxnu-liguobin.leetcode-helper'
 ```
 
 ### 命令行中使用
@@ -63,13 +63,13 @@ gradle leetcodeCodegen  -PquestionTitle=add-two-numbers -PgeneratedLanguage=Java
 想在自己项目中使用的话，可以将task再包装一下，以减少参数传递：
 
 ```groovy
-task leetcodeCodegenService(type: io.github.dreamylost.task.LeetcodeGradleTask) {
+task leetcodeCodegenService(type: com.github.dreamylost.task.LeetcodeGradleTask) {
     questionTitle = "two-sum"// 这里都是写死的，但是在一个确定的项目中，只需要将该值设为动态读取即可，其他参数可写死，下同
-    generatedLanguage = io.github.dreamylost.GeneratedLanguage.Scala
+    generatedLanguage = com.github.dreamylost.GeneratedLanguage.Scala
     packageName = "io.github.test"
     prefix = "Leetcode_"
     srcFolder = "src/main/scala"
-    serverConfig = io.github.dreamylost.invoker.ServerConfig.defaultConfig()
+    serverConfig = com.github.dreamylost.invoker.ServerConfig.defaultConfig()
 }
 ```
 
@@ -211,13 +211,13 @@ mod test {
 
 下面即示例项目`examples`的主要配置
 ```groovy
-task leetcodeCodegenService(type: io.github.dreamylost.task.LeetcodeGradleTask) {
+task leetcodeCodegenService(type: com.github.dreamylost.task.LeetcodeGradleTask) {
    questionTitle = "two-sum"
-   generatedLanguage = io.github.dreamylost.GeneratedLanguage.Java
+   generatedLanguage = com.github.dreamylost.GeneratedLanguage.Java
    packageName = "io.github.test"
    prefix = "Leetcode_"
    srcFolder = "src/main/java"
-   serverConfig = io.github.dreamylost.invoker.ServerConfig.defaultConfig()
+   serverConfig = com.github.dreamylost.invoker.ServerConfig.defaultConfig()
 }
 // 添加leetcodeExtension配置
 leetcodeExtension {
