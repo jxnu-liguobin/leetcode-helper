@@ -36,7 +36,7 @@ buildscript {
         }
     }
     dependencies {
-        classpath "com.github.jxnu-liguobin:leetcode-helper:0.1.0"
+        classpath "com.github.jxnu-liguobin:leetcode-helper:0.1.2"
     }
 }
 
