@@ -57,7 +57,7 @@ class LeetcodeFileTest {
                 Pair(Constants.CODE, codeNode?.second?.code),
                 Pair(Constants.PREFIX, "Leetcode_")
             )
-        LeetcodeFileCreator.createFile(data, out, generatedLanguage)
+        LeetcodeFileCreator.createFile(data, out, generatedLanguage, false)
         val files = Objects.requireNonNull<Array<File>>(out.listFiles())
 
         getFileByName(files, "Leetcode_1603.kt").let {
@@ -78,7 +78,7 @@ class LeetcodeFileTest {
                 Pair(Constants.PREFIX, "Leetcode_"),
                 Pair(Constants.PACKAGE, "io.github.dreamylost")
             )
-        LeetcodeFileCreator.createFile(data, out, generatedLanguage)
+        LeetcodeFileCreator.createFile(data, out, generatedLanguage, false)
         val files = outPackage.listFiles()
 
         assertSameTrimmedContent(
@@ -101,7 +101,7 @@ class LeetcodeFileTest {
                 Pair(Constants.PREFIX, "Leetcode_"),
                 Pair(Constants.PACKAGE, "io.github.dreamylost")
             )
-        LeetcodeFileCreator.createFile(data, out, generatedLanguage)
+        LeetcodeFileCreator.createFile(data, out, generatedLanguage, false)
         val files = outPackage.listFiles()
 
         assertSameTrimmedContent(
@@ -124,7 +124,7 @@ class LeetcodeFileTest {
                 Pair(Constants.PREFIX, "Leetcode_"),
                 Pair(Constants.PACKAGE, "io.github.dreamylost")
             )
-        LeetcodeFileCreator.createFile(data, out, generatedLanguage)
+        LeetcodeFileCreator.createFile(data, out, generatedLanguage, false)
         val files = outPackage.listFiles()
 
         assertSameTrimmedContent(
@@ -146,7 +146,7 @@ class LeetcodeFileTest {
                 Pair(Constants.CODE, codeNode?.second?.code),
                 Pair(Constants.PREFIX, "leetcode_")
             )
-        LeetcodeFileCreator.createFile(data, out, generatedLanguage)
+        LeetcodeFileCreator.createFile(data, out, generatedLanguage, false)
         val files = Objects.requireNonNull<Array<File>>(out.listFiles())
 
         assertSameTrimmedContent(

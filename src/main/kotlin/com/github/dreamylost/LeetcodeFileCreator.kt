@@ -12,9 +12,10 @@ object LeetcodeFileCreator {
     fun createFile(
         dataModel: Map<String, Any?>,
         outputDir: File,
-        generatedLanguage: GeneratedLanguage
+        generatedLanguage: GeneratedLanguage,
+        deleteExistsFolder: Boolean
     ): File {
-        prepareOutputDir(outputDir)
+        prepareOutputDir(outputDir, deleteExistsFolder)
         val prefix = dataModel[Constants.PREFIX].toString()
         val fileName = prefix + dataModel[Constants.CLASS_NAME].toString() + generatedLanguage.suffix
         val fileOutputDir = getFileTargetDirectory(dataModel, outputDir)
@@ -33,8 +34,10 @@ object LeetcodeFileCreator {
         return sourceFile
     }
 
-    fun prepareOutputDir(outputDir: File) {
-        Utils.deleteDir(outputDir)
+    fun prepareOutputDir(outputDir: File, deleteExistsFolder: Boolean) {
+        if (deleteExistsFolder) {
+            Utils.deleteDir(outputDir)
+        }
         Utils.createDirIfAbsent(outputDir)
     }
 
