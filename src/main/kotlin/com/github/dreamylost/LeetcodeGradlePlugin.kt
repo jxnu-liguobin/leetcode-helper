@@ -18,4 +18,5 @@ open class LeetcodePluginExtension {
     var templateSourceCode: String? = null
     var templateName: String? = null
     var customData: Map<String, Any> = mapOf()
+    var deleteExistsFolder: Boolean = false
 }

@@ -14,7 +14,7 @@ apply plugin: 'java'
 apply plugin: 'com.github.jxnu-liguobin.leetcode-helper'
 
 group 'com.github.jxnu-liguobin'
-version '0.1.3'
+version '0.1.4'
 
 repositories {
     mavenLocal()

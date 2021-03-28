@@ -22,17 +22,29 @@ abstract class LeetcodeGradleTask : DefaultTask() {
     }
 
     // 必填，这里使用Option是为了兼容属性变量和task输入
-    @get:Input @get:Optional abstract var questionTitle: String?
+    @get:Input
+    @get:Optional
+    abstract var questionTitle: String?
 
-    @get:Input @get:Optional abstract var serverConfig: ServerConfig?
+    @get:Input
+    @get:Optional
+    abstract var serverConfig: ServerConfig?
 
-    @get:Input @get:Optional abstract var generatedLanguage: GeneratedLanguage?
+    @get:Input
+    @get:Optional
+    abstract var generatedLanguage: GeneratedLanguage?
 
-    @get:Input @get:Optional abstract var packageName: String?
+    @get:Input
+    @get:Optional
+    abstract var packageName: String?
 
-    @get:Input @get:Optional abstract var prefix: String?
+    @get:Input
+    @get:Optional
+    abstract var prefix: String?
 
-    @get:Input @get:Optional abstract var srcFolder: String?
+    @get:Input
+    @get:Optional
+    abstract var srcFolder: String?
 
     @TaskAction
     open fun leetcodeHelper() {
@@ -75,7 +87,8 @@ abstract class LeetcodeGradleTask : DefaultTask() {
         LeetcodeFileCreator.createFile(
             data.plus(leetcodeExtension.customData),
             buildSrcFolder(srcFolder, generatedLanguage!!),
-            generatedLanguage!!
+            generatedLanguage!!,
+            leetcodeExtension.deleteExistsFolder
         )
     }
 
